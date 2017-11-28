@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item
+        android:id="@+id/Home_Page"
+        android:title="@string/Home"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/Session"
+        android:title="@string/Session"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/Map"
+        android:title="@string/Map"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/Quizz"
+        android:title="@string/Quizz"
+        app:showAsAction="ifRoom" />
+</menu>

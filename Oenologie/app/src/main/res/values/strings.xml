@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Oenologie</string>
+    <string name="Home">Home</string>
+    <string name="Session">Session</string>
+    <string name="Map">Map</string>
+    <string name="Quizz">Quizz</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+</resources>
