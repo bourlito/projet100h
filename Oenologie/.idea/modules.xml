@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Oenologie-Android Studio.iml" filepath="$PROJECT_DIR$/Oenologie-Android Studio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Oenologie.iml" filepath="$PROJECT_DIR$/Oenologie.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
