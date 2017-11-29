@@ -33,19 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.my_transition);
         tv.startAnimation(myanim);
-
-        Thread timer = new Thread(){
-            public void run(){
-                try{
-                    sleep(3000);
-                }catch (InterruptedException e){
-                    e.printStackTrace();
-                }finally {
-                    finish();
-                }
-            }
-        };
-        timer.start();
     }
 
     @Override

@@ -3,15 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/db"
-        android:icon="@drawable/ic_one"
-        android:title="Database" />
+        android:id="@+id/accueil"
+        android:title="Accueil"
+        android:icon="@drawable/ic_home"/>
     <item
-        android:id="@+id/rew"
-        android:icon="@drawable/ic_two"
-        android:title="Rewards" />
-    <item android:title="Item" />
-    <item android:title="Item" />
-    <item android:title="Item" />
-    <item android:title="Item" />
+        android:id="@+id/seance"
+        android:title="Séance"
+        android:icon="@drawable/ic_seance"/>
+
+    <item android:title="Carte"
+        android:id="@+id/carte"
+        android:icon="@drawable/ic_map"/>
+
+    <item android:title="Quizz"
+        android:id="@+id/quizz"
+        android:icon="@drawable/ic_quizz"/>
 </menu>
