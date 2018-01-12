@@ -1,6 +1,10 @@
 package com.example.oenologie;
 
+
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +14,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.oenologie.Fragments.Fragment_Accueil;
+import com.example.oenologie.Fragments.Fragment_Carte;
+import com.example.oenologie.Fragments.Fragment_Quizz;
+import com.example.oenologie.Fragments.Fragment_Seance;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,11 +33,13 @@ public class MainActivity extends AppCompatActivity {
 
         myDrawer = findViewById(R.id.myDrawer);
         myToggle = new ActionBarDrawerToggle(this,myDrawer,R.string.open,R.string.close);
+        NavigationView navigationView = findViewById(R.id.navView);
 
         myDrawer.addDrawerListener(myToggle);
         myToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setupDrawerContent(navigationView);
 
         tv = findViewById(R.id.textintro);
 
@@ -52,5 +63,46 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void selectItemDrawer(MenuItem menuItem){
+        Fragment myFragment = null;
+        Class fragmentClass;
+        switch (menuItem.getItemId()){
+            case R.id.accueil:
+                fragmentClass = Fragment_Accueil.class;
+                break;
+            case R.id.carte:
+                fragmentClass = Fragment_Carte.class;
+                break;
+            case R.id.seance:
+                fragmentClass = Fragment_Seance.class;
+                break;
+            case R.id.quizz:
+                fragmentClass = Fragment_Quizz.class;
+                break;
+            default:
+                fragmentClass = MainActivity.class;
+        }
+        try {
+            myFragment = (Fragment) fragmentClass.newInstance();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flcontent,myFragment).commit();
+        menuItem.setChecked(true);
+        setTitle(menuItem.getTitle());
+        myDrawer.closeDrawers();
+    }
+
+    private void setupDrawerContent(NavigationView navigationView){
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                selectItemDrawer(item);
+                return true;
+            }
+        });
     }
 }
