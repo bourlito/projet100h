@@ -1,4 +1,4 @@
-package com.example.oenologie;
+package com.example.oenologie.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,16 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.oenologie.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Quizz.OnFragmentInteractionListener} interface
+ * {@link Fragment_Accueil.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Quizz#newInstance} factory method to
+ * Use the {@link Fragment_Accueil#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Quizz extends Fragment {
+public class Fragment_Accueil extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +31,7 @@ public class Quizz extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Quizz() {
+    public Fragment_Accueil() {
         // Required empty public constructor
     }
 
@@ -39,11 +41,11 @@ public class Quizz extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Quizz.
+     * @return A new instance of fragment Fragment_Accueil.
      */
     // TODO: Rename and change types and number of parameters
-    public static Quizz newInstance(String param1, String param2) {
-        Quizz fragment = new Quizz();
+    public static Fragment_Accueil newInstance(String param1, String param2) {
+        Fragment_Accueil fragment = new Fragment_Accueil();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +66,7 @@ public class Quizz extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quizz, container, false);
+        return inflater.inflate(R.layout.fragment_accueil, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

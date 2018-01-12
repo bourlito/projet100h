@@ -1,4 +1,4 @@
-package com.example.oenologie;
+package com.example.oenologie.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,16 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.oenologie.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Seance.OnFragmentInteractionListener} interface
+ * {@link Fragment_Seance.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Seance#newInstance} factory method to
+ * Use the {@link Fragment_Seance#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Seance extends Fragment {
+public class Fragment_Seance extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +31,7 @@ public class Seance extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Seance() {
+    public Fragment_Seance() {
         // Required empty public constructor
     }
 
@@ -39,11 +41,11 @@ public class Seance extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Seance.
+     * @return A new instance of fragment Fragment_Seance.
      */
     // TODO: Rename and change types and number of parameters
-    public static Seance newInstance(String param1, String param2) {
-        Seance fragment = new Seance();
+    public static Fragment_Seance newInstance(String param1, String param2) {
+        Fragment_Seance fragment = new Fragment_Seance();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

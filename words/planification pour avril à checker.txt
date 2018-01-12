@@ -1,0 +1,6 @@
+Nb : Plan proposé pour le rapport final à rendre en avril:
+-	Partie I - Situation d’avancement du projet (technologies employées, outils utilisés, réalisé par rapport aux éléments du cahier des charges, plan de test effectué, mise en production, planning réel / prévisionnel)
+-	Partie II – Description technique de l’application, à l’intention d’éventuels binômes susceptibles de poursuivre le travail à l’avenir (insistez sur les aspects techniques complémentaires que vous avez dû mettre en œuvre, et que vous n’aviez pas eu l’occasion de mettre en œuvre au sein des enseignements) 
+-	Annexes : 
+1.	documentation utilisateur 
+2.	code commenté

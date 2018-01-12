@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
         myDrawer.addDrawerListener(myToggle);
         myToggle.syncState();
-        NavigationView nvDrawer = findViewById(R.id.navView);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
