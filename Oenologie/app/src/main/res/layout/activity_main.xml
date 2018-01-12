@@ -8,10 +8,17 @@
     tools:context="com.example.oenologie.MainActivity"
     android:background="@color/black"
     android:orientation="vertical">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/flcontent">
+
+    </FrameLayout>
 
     <android.support.design.widget.NavigationView
         android:layout_width="340dp"
         android:layout_height="match_parent"
+        android:id="@+id/navView"
         android:background="#FFF"
         app:itemTextColor="#000"
         app:itemIconTint="#000"

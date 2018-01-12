@@ -1,6 +1,6 @@
 package com.example.oenologie;
 
-import android.content.Intent;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,24 +34,21 @@ public class MainActivity extends AppCompatActivity {
 
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.my_transition);
         tv.startAnimation(myanim);
-
-        Thread timer = new Thread(){
-            public void run(){
-                try{
-                    sleep(3000);
-                }catch (InterruptedException e){
-                    e.printStackTrace();
-                }finally {
-                    finish();
-                }
-            }
-        };
-        timer.start();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (myToggle.onOptionsItemSelected(item)){
+            int id = item.getItemId();
+            if (id == R.id.accueil){
+                Toast.makeText(this,"accueil",Toast.LENGTH_SHORT).show();
+            }else if (id == R.id.carte){
+                Toast.makeText(this,"carte",Toast.LENGTH_SHORT).show();
+            }else if (id == R.id.quizz){
+                Toast.makeText(this,"quizz",Toast.LENGTH_SHORT).show();
+            }else if (id == R.id.seance){
+                Toast.makeText(this,"seance",Toast.LENGTH_SHORT).show();
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);
