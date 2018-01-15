@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Oenologie.iml" filepath="$PROJECT_DIR$/Oenologie.iml" />
-      <module fileurl="file://C:\Users\thomas\Documents\GitHub\projet100h\Oenologie\Oenologie.iml" filepath="C:\Users\thomas\Documents\GitHub\projet100h\Oenologie\Oenologie.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\thomas\Documents\GitHub\projet100h\Oenologie\app\app.iml" filepath="C:\Users\thomas\Documents\GitHub\projet100h\Oenologie\app\app.iml" />
     </modules>
   </component>
 </project>
