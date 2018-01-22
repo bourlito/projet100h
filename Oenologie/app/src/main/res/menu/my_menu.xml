@@ -5,17 +5,17 @@
     <item
         android:id="@+id/accueil"
         android:icon="@drawable/ic_home"
-        android:title="Accueil" />
+        android:title="@string/accueil" />
     <item
         android:id="@+id/seance"
-        android:title="Séance"
-        android:icon="@drawable/ic_seance"/>
+        android:title="@string/seance"
+        android:icon="@drawable/ic_seance" />
 
-    <item android:title="Carte"
+    <item android:title="@string/carte"
         android:id="@+id/carte"
         android:icon="@drawable/ic_map"/>
 
-    <item android:title="Quizz"
+    <item android:title="@string/quizz"
         android:id="@+id/quizz"
         android:icon="@drawable/ic_quizz"/>
 </menu>

@@ -1,15 +1,18 @@
 package com.example.oenologie;
 
 
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
@@ -20,11 +23,27 @@ import com.example.oenologie.Fragments.Fragment_Carte;
 import com.example.oenologie.Fragments.Fragment_Quizz;
 import com.example.oenologie.Fragments.Fragment_Seance;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout myDrawer;
     private ActionBarDrawerToggle myToggle;
     private TextView tv;
+    private DatabaseHelper dbHelper = new DatabaseHelper(this);
+    FragmentTransaction fragmentTransaction;
+
+    private static String url =
+            "https://opendata.lillemetropole.fr/api/records/1.0/search/?dataset=mel_piscines&facet=commune&rows=-1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +64,53 @@ public class MainActivity extends AppCompatActivity {
 
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.my_transition);
         tv.startAnimation(myanim);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.accueil:
+                        tv.setVisibility(View.INVISIBLE);
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.flcontent,new Fragment_Accueil());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("Home Test");
+                        myDrawer.closeDrawers();
+                        break;
+
+                    case R.id.seance:
+                        tv.setVisibility(View.INVISIBLE);
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.flcontent,new Fragment_Seance());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("Seance Test");
+                        item.setChecked(true);
+                        myDrawer.closeDrawers();
+                        break;
+
+                    case R.id.carte:
+                        tv.setVisibility(View.INVISIBLE);
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.flcontent,new Fragment_Carte());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("Map Test");
+                        item.setChecked(true);
+                        myDrawer.closeDrawers();
+                        break;
+
+                    case R.id.quizz:
+                        tv.setVisibility(View.INVISIBLE);
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.flcontent,new Fragment_Quizz());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("Quizz Test");
+                        item.setChecked(true);
+                        myDrawer.closeDrawers();
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
     @Override
