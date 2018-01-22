@@ -2,15 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context="com.example.oenologie.Fragments.Fragment_Carte">
+    tools:context="com.example.oenologie.Fragments.Fragments_Seances.Fragment_Seance_3">
 
+    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical|center_horizontal"
-        android:text="fragment map"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
-        android:textColor="@color/black" />
+        android:text="@string/frag_seance_3"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
 
 </FrameLayout>

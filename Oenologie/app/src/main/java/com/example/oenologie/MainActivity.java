@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Accueil());
                         fragmentTransaction.commit();
                         getSupportActionBar().setTitle("Home Test");
+                        item.setChecked(true);
                         myDrawer.closeDrawers();
                         break;
 
@@ -116,57 +117,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (myToggle.onOptionsItemSelected(item)){
-            int id = item.getItemId();
-            if (id == R.id.accueil){
-                Toast.makeText(this,"accueil",Toast.LENGTH_SHORT).show();
-            }else if (id == R.id.carte){
-                Toast.makeText(this,"carte",Toast.LENGTH_SHORT).show();
-            }else if (id == R.id.quizz){
-                Toast.makeText(this,"quizz",Toast.LENGTH_SHORT).show();
-            }else if (id == R.id.seance){
-                Toast.makeText(this,"seance",Toast.LENGTH_SHORT).show();
-            }
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void selectItemDrawer(MenuItem menuItem){
-        Fragment myFragment = null;
-        Class fragmentClass;
-        switch (menuItem.getItemId()){
-            case R.id.accueil:
-                fragmentClass = Fragment_Accueil.class;
-                break;
-            case R.id.carte:
-                fragmentClass = Fragment_Carte.class;
-                break;
-            case R.id.seance:
-                fragmentClass = Fragment_Seance.class;
-                break;
-            case R.id.quizz:
-                fragmentClass = Fragment_Quizz.class;
-                break;
-            default:
-                fragmentClass = MainActivity.class;
-        }
-        try {
-            myFragment = (Fragment) fragmentClass.newInstance();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flcontent,myFragment).commit();
-        menuItem.setChecked(true);
-        setTitle(menuItem.getTitle());
-        myDrawer.closeDrawers();
     }
 
     private void setupDrawerContent(NavigationView navigationView){
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                selectItemDrawer(item);
                 return true;
             }
         });
