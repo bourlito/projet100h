@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Oenologie</string>
+    <string name="app_name">Oenologie Hei</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
 
@@ -12,7 +12,7 @@
 
     <string name="action_settings">Settings</string>
     <string name="accueil">Accueil</string>
-    <string name="seance">Séance</string>
+    <string name="seance">Séances</string>
     <string name="carte">Carte</string>
     <string name="quizz">Quizz</string>
     <string name="oenologie_hei">Oenologie HEI</string>

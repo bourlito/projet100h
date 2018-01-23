@@ -15,7 +15,6 @@ import com.example.oenologie.R;
  */
 public class Fragment_Accueil extends Fragment {
 
-
     public Fragment_Accueil() {
         // Required empty public constructor
     }

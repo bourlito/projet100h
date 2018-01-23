@@ -10,6 +10,12 @@
         android:title="@string/accueil" />
 
     <item
+        android:id="@+id/seance"
+        android:checkable="true"
+        android:icon="@drawable/ic_seance"
+        android:title="@string/seance" />
+
+    <item
         android:id="@+id/carte"
         android:checkable="true"
         android:icon="@drawable/ic_map"
@@ -20,9 +26,4 @@
         android:checkable="true"
         android:icon="@drawable/ic_quizz"
         android:title="@string/quizz" />
-    <item
-        android:id="@+id/seance"
-        android:checkable="true"
-        android:icon="@drawable/ic_seance"
-        android:title="@string/seance" />
 </menu>

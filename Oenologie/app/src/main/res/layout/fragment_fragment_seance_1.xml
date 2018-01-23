@@ -10,6 +10,7 @@
         android:layout_height="match_parent"
         android:gravity="center_vertical|center"
         android:text="@string/frag_seance_1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="@color/black" />
 
 </FrameLayout>

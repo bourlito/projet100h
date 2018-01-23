@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Accueil());
                         fragmentTransaction.commit();
-                        getSupportActionBar().setTitle("Home Test");
+                        getSupportActionBar().setTitle("Accueil");
                         item.setChecked(true);
                         myDrawer.closeDrawers();
                         break;
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Seance());
                         fragmentTransaction.commit();
-                        getSupportActionBar().setTitle("Seance Test");
+                        getSupportActionBar().setTitle("Séances");
                         item.setChecked(true);
                         myDrawer.closeDrawers();
                         break;
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Carte());
                         fragmentTransaction.commit();
-                        getSupportActionBar().setTitle("Map Test");
+                        getSupportActionBar().setTitle("Carte Intéractive");
                         item.setChecked(true);
                         myDrawer.closeDrawers();
                         break;
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Quizz());
                         fragmentTransaction.commit();
-                        getSupportActionBar().setTitle("Quizz Test");
+                        getSupportActionBar().setTitle("Quizz!");
                         item.setChecked(true);
                         myDrawer.closeDrawers();
                         break;
