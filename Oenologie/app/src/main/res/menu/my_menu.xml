@@ -19,11 +19,18 @@
         android:id="@+id/carte"
         android:checkable="true"
         android:icon="@drawable/ic_map"
-        android:title="@string/carte" />
+        android:title="@string/carte"
+        />
 
     <item
         android:id="@+id/quizz"
         android:checkable="true"
         android:icon="@drawable/ic_quizz"
         android:title="@string/quizz" />
+
+    <item
+        android:id="@+id/contact"
+        android:checkable="true"
+        android:icon="@drawable/ic_contacts"
+        android:title="@string/contact" />
 </menu>

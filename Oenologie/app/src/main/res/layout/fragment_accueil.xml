@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context="com.example.oenologie.Fragments.Fragment_Accueil">
 
     <TextView
@@ -11,7 +10,7 @@
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:gravity="center_vertical|center_horizontal"
-        android:text="Chaque année, la commission oenologie d'Hei propose des dégustations, des moments de partage pour s'initier à la dégustation et la fabrication du vin, ou tout simplement pour le plaisir."
+        android:text="Chaque année, la commission oenologie d'Hei propose des dégustations, des moments de partage pour s'initier à la dégustation et la fabrication du vin, ou tout simplement pour le plaisir..."
         android:textAlignment="textStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/black" />

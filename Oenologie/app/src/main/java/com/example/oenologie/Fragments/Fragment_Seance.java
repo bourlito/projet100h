@@ -10,7 +10,6 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TabHost;
 
 import com.example.oenologie.Fragments.Fragments_Seances.Fragment_Seance_1;
 import com.example.oenologie.Fragments.Fragments_Seances.Fragment_Seance_2;

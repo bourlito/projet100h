@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.oenologie.Fragments.Fragment_Accueil;
 import com.example.oenologie.Fragments.Fragment_Carte;
+import com.example.oenologie.Fragments.Fragment_Contact;
 import com.example.oenologie.Fragments.Fragment_Quizz;
 import com.example.oenologie.Fragments.Fragment_Seance;
 
@@ -105,6 +106,16 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Quizz());
                         fragmentTransaction.commit();
                         getSupportActionBar().setTitle("Quizz!");
+                        item.setChecked(true);
+                        myDrawer.closeDrawers();
+                        break;
+
+                    case R.id.contact:
+                        tv.setVisibility(View.INVISIBLE);
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.flcontent,new Fragment_Contact());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("Contact & Adresses");
                         item.setChecked(true);
                         myDrawer.closeDrawers();
                         break;
