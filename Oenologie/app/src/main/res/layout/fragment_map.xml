@@ -6,12 +6,14 @@
     tools:context="com.example.oenologie.Fragments.Fragment_Carte">
 
     <ImageView
+        android:id="@+id/iv_carte"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/carte_interactive_des_vignobles_de_france"
         android:src="@drawable/france_vignobles" />
 
     <RelativeLayout
+        android:id="@+id/relativeLayoutCarte"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -28,7 +30,7 @@
             android:focusable="true"
             android:minHeight="55dp"
             android:minWidth="150dp"
-            android:src="@android:color/holo_orange_dark" />
+            android:src="@android:color/transparent" />
 
         <ImageView
             android:id="@+id/iv_champagne"
@@ -43,7 +45,7 @@
             android:focusable="true"
             android:minHeight="70dp"
             android:minWidth="50dp"
-            android:src="@android:color/holo_orange_light" />
+            android:src="@android:color/transparent" />
 
         <ImageView
             android:id="@+id/iv_bordeaux"
@@ -57,7 +59,7 @@
             android:focusable="true"
             android:minHeight="90dp"
             android:minWidth="70dp"
-            android:src="@android:color/holo_purple" />
+            android:src="@android:color/transparent" />
 
         <ImageView
             android:id="@+id/iv_lorraine"
@@ -70,7 +72,7 @@
             android:focusable="true"
             android:minHeight="60dp"
             android:minWidth="40dp"
-            android:src="@android:color/holo_blue_bright" />
+            android:src="@android:color/transparent" />
 
         <ImageView
             android:id="@+id/iv_alsace"
@@ -84,117 +86,116 @@
             android:focusable="true"
             android:minHeight="60dp"
             android:minWidth="40dp"
-            android:src="@android:color/holo_green_dark" />
+            android:src="@android:color/transparent" />
 
         <ImageView
             android:id="@+id/iv_sudouest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/iv_bordeaux"
-            android:layout_below="@+id/iv_bordeaux"
+            android:layout_alignBottom="@+id/iv_languedoc"
+            android:layout_marginBottom="9dp"
+            android:layout_toStartOf="@+id/iv_sudouest2"
             android:clickable="true"
             android:contentDescription="@string/sud_ouest"
             android:focusable="true"
             android:minHeight="60dp"
             android:minWidth="70dp"
-            android:src="@android:color/holo_red_light" />
+            android:src="@android:color/transparent" />
 
         <ImageView
             android:id="@+id/iv_sudouest2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/iv_sudouest"
-            android:layout_marginBottom="34dp"
+            android:layout_above="@+id/iv_provencecorse"
             android:layout_toEndOf="@+id/iv_bordeaux"
             android:clickable="true"
             android:contentDescription="@string/sud_ouest"
             android:focusable="true"
             android:minHeight="50dp"
             android:minWidth="70dp"
-            android:src="@android:color/holo_red_light" />
+            android:src="@android:color/transparent" />
 
         <ImageView
             android:id="@+id/iv_languedoc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/iv_champagne"
             android:layout_below="@+id/iv_bordeaux"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginEnd="19dp"
+            android:layout_marginTop="42dp"
+            android:layout_toStartOf="@+id/iv_provencecorse"
             android:clickable="true"
             android:contentDescription="@string/languedoc"
             android:focusable="true"
             android:minHeight="60dp"
             android:minWidth="70dp"
-            android:src="@android:color/holo_blue_dark" />
+            android:src="@android:color/transparent" />
 
         <ImageView
             android:id="@+id/iv_provencecorse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/iv_languedoc"
-            android:layout_toEndOf="@+id/iv_languedoc"
+            android:layout_below="@+id/iv_rhone"
+            android:layout_toEndOf="@+id/iv_champagne"
             android:clickable="true"
             android:contentDescription="@string/provence_corse"
             android:focusable="true"
             android:minHeight="30dp"
             android:minWidth="65dp"
-            android:src="@color/colorAccent" />
+            android:src="@android:color/transparent" />
 
         <ImageView
             android:id="@+id/iv_provencecorse2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/iv_provencecorse"
-            android:layout_marginTop="14dp"
-            android:layout_toEndOf="@+id/iv_provencecorse"
+            android:layout_marginTop="16dp"
+            android:layout_toEndOf="@+id/iv_alsace"
             android:clickable="true"
             android:contentDescription="@string/provence_corse"
             android:focusable="true"
             android:minHeight="68dp"
             android:minWidth="43dp"
-            android:src="@color/colorAccent" />
+            android:src="@android:color/transparent" />
 
         <ImageView
             android:id="@+id/iv_rhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/iv_provencecorse"
-            android:layout_alignStart="@+id/iv_bourgogne"
-            android:layout_marginStart="8dp"
+            android:layout_above="@+id/iv_sudouest"
+            android:layout_toEndOf="@+id/iv_loire2"
             android:clickable="true"
             android:contentDescription="@string/rhone"
             android:focusable="true"
             android:minHeight="110dp"
             android:minWidth="60dp"
-            android:src="@android:color/holo_green_light" />
+            android:src="@android:color/transparent" />
 
         <ImageView
             android:id="@+id/iv_bourgogne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/iv_loire"
-            android:layout_alignStart="@+id/iv_champagne"
+            android:layout_toEndOf="@+id/iv_loire2"
             android:clickable="true"
             android:contentDescription="@string/bourgogne"
             android:focusable="true"
             android:minHeight="60dp"
             android:minWidth="50dp"
-            android:src="@android:color/darker_gray" />
+            android:src="@android:color/transparent" />
 
         <ImageView
             android:id="@+id/iv_savoie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/iv_sudouest2"
-            android:layout_marginBottom="14dp"
+            android:layout_marginBottom="21dp"
             android:layout_toEndOf="@+id/iv_rhone"
             android:clickable="true"
             android:contentDescription="@string/savoie"
             android:focusable="true"
             android:minHeight="75dp"
             android:minWidth="30dp"
-            android:src="@android:color/black" />
+            android:src="@android:color/transparent" />
 
         <ImageView
             android:id="@+id/iv_loire2"
@@ -207,7 +208,7 @@
             android:focusable="true"
             android:minHeight="45dp"
             android:minWidth="20dp"
-            android:src="@android:color/holo_orange_dark" />
+            android:src="@android:color/transparent" />
     </RelativeLayout>
 
 </FrameLayout>
