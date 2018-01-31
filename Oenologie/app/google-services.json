@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "221527118958",
+    "firebase_url": "https://oenologie-5a919.firebaseio.com",
+    "project_id": "oenologie-5a919",
+    "storage_bucket": "oenologie-5a919.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221527118958:android:897ce96bd70ef2d1",
+        "android_client_info": {
+          "package_name": "com.example.oenologie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "221527118958-l2kin74e7ak7bbdlaf26f86pfe98og09.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRo2T6y3AJhQ9t1P5xSVAfy_u0OdibMF0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
