@@ -1,15 +1,213 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.oenologie.Fragments.Fragment_Carte">
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="fragment map"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
-        android:textColor="@color/black" />
+        android:contentDescription="@string/carte_interactive_des_vignobles_de_france"
+        android:src="@drawable/france_vignobles" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_loire"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="78dp"
+            android:layout_marginTop="238dp"
+            android:clickable="true"
+            android:contentDescription="@string/loire"
+            android:focusable="true"
+            android:minHeight="55dp"
+            android:minWidth="150dp"
+            android:src="@android:color/holo_orange_dark" />
+
+        <ImageView
+            android:id="@+id/iv_champagne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_loire"
+            android:layout_marginBottom="55dp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@+id/iv_loire"
+            android:clickable="true"
+            android:contentDescription="@string/champagne"
+            android:focusable="true"
+            android:minHeight="70dp"
+            android:minWidth="50dp"
+            android:src="@android:color/holo_orange_light" />
+
+        <ImageView
+            android:id="@+id/iv_bordeaux"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/iv_loire"
+            android:layout_below="@+id/iv_loire"
+            android:layout_marginStart="15dp"
+            android:clickable="true"
+            android:contentDescription="@string/bordeaux"
+            android:focusable="true"
+            android:minHeight="90dp"
+            android:minWidth="70dp"
+            android:src="@android:color/holo_purple" />
+
+        <ImageView
+            android:id="@+id/iv_lorraine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_champagne"
+            android:layout_toEndOf="@+id/iv_champagne"
+            android:clickable="true"
+            android:contentDescription="@string/lorraine"
+            android:focusable="true"
+            android:minHeight="60dp"
+            android:minWidth="40dp"
+            android:src="@android:color/holo_blue_bright" />
+
+        <ImageView
+            android:id="@+id/iv_alsace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_lorraine"
+            android:layout_marginTop="24dp"
+            android:layout_toEndOf="@+id/iv_lorraine"
+            android:clickable="true"
+            android:contentDescription="@string/alsace"
+            android:focusable="true"
+            android:minHeight="60dp"
+            android:minWidth="40dp"
+            android:src="@android:color/holo_green_dark" />
+
+        <ImageView
+            android:id="@+id/iv_sudouest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/iv_bordeaux"
+            android:layout_below="@+id/iv_bordeaux"
+            android:clickable="true"
+            android:contentDescription="@string/sud_ouest"
+            android:focusable="true"
+            android:minHeight="60dp"
+            android:minWidth="70dp"
+            android:src="@android:color/holo_red_light" />
+
+        <ImageView
+            android:id="@+id/iv_sudouest2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_sudouest"
+            android:layout_marginBottom="34dp"
+            android:layout_toEndOf="@+id/iv_bordeaux"
+            android:clickable="true"
+            android:contentDescription="@string/sud_ouest"
+            android:focusable="true"
+            android:minHeight="50dp"
+            android:minWidth="70dp"
+            android:src="@android:color/holo_red_light" />
+
+        <ImageView
+            android:id="@+id/iv_languedoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/iv_champagne"
+            android:layout_below="@+id/iv_bordeaux"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="26dp"
+            android:clickable="true"
+            android:contentDescription="@string/languedoc"
+            android:focusable="true"
+            android:minHeight="60dp"
+            android:minWidth="70dp"
+            android:src="@android:color/holo_blue_dark" />
+
+        <ImageView
+            android:id="@+id/iv_provencecorse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_languedoc"
+            android:layout_toEndOf="@+id/iv_languedoc"
+            android:clickable="true"
+            android:contentDescription="@string/provence_corse"
+            android:focusable="true"
+            android:minHeight="30dp"
+            android:minWidth="65dp"
+            android:src="@color/colorAccent" />
+
+        <ImageView
+            android:id="@+id/iv_provencecorse2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iv_provencecorse"
+            android:layout_marginTop="14dp"
+            android:layout_toEndOf="@+id/iv_provencecorse"
+            android:clickable="true"
+            android:contentDescription="@string/provence_corse"
+            android:focusable="true"
+            android:minHeight="68dp"
+            android:minWidth="43dp"
+            android:src="@color/colorAccent" />
+
+        <ImageView
+            android:id="@+id/iv_rhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/iv_provencecorse"
+            android:layout_alignStart="@+id/iv_bourgogne"
+            android:layout_marginStart="8dp"
+            android:clickable="true"
+            android:contentDescription="@string/rhone"
+            android:focusable="true"
+            android:minHeight="110dp"
+            android:minWidth="60dp"
+            android:src="@android:color/holo_green_light" />
+
+        <ImageView
+            android:id="@+id/iv_bourgogne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_loire"
+            android:layout_alignStart="@+id/iv_champagne"
+            android:clickable="true"
+            android:contentDescription="@string/bourgogne"
+            android:focusable="true"
+            android:minHeight="60dp"
+            android:minWidth="50dp"
+            android:src="@android:color/darker_gray" />
+
+        <ImageView
+            android:id="@+id/iv_savoie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/iv_sudouest2"
+            android:layout_marginBottom="14dp"
+            android:layout_toEndOf="@+id/iv_rhone"
+            android:clickable="true"
+            android:contentDescription="@string/savoie"
+            android:focusable="true"
+            android:minHeight="75dp"
+            android:minWidth="30dp"
+            android:src="@android:color/black" />
+
+        <ImageView
+            android:id="@+id/iv_loire2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_champagne"
+            android:layout_toEndOf="@+id/iv_loire"
+            android:clickable="true"
+            android:contentDescription="@string/loire"
+            android:focusable="true"
+            android:minHeight="45dp"
+            android:minWidth="20dp"
+            android:src="@android:color/holo_orange_dark" />
+    </RelativeLayout>
 
 </FrameLayout>
