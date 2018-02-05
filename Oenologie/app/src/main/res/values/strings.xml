@@ -32,4 +32,6 @@
     <string name="rhone">rhone</string>
     <string name="bourgogne">bourgogne</string>
     <string name="savoie">savoie</string>
+    <string name="signin">demarrer</string>
+    <string name="cancel">annuler</string>
 </resources>
