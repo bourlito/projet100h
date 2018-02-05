@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
         String JSON_URL;
         @Override
         protected void onPreExecute() {
-            JSON_URL ="http://10.122.151.10/test/seance1.php";
+            JSON_URL ="http://192.168.0.27/test/seance1.php";
         }
 
         @Override
@@ -200,7 +200,6 @@ public class MainActivity extends AppCompatActivity {
                     JSON_DATA.append(JSON_STRING).append("\n");
                 }
                 return JSON_DATA.toString().trim();
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
