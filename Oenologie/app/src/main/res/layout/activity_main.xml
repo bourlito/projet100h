@@ -8,10 +8,18 @@
     tools:context="com.example.oenologie.MainActivity"
     android:background="@drawable/background"
     android:orientation="vertical">
-    <FrameLayout
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/id_cl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/flcontent">
+        android:layout_height="match_parent">
+
+    </android.support.constraint.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/flcontent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
         <Button
@@ -26,17 +34,20 @@
             android:id="@+id/textintro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
+            android:layout_gravity="center"
             android:gravity="center_vertical|center_horizontal"
             android:text="@string/oenologie_hei"
             android:textAppearance="@style/TextAppearance.AppCompat.Display3"
             android:textColor="@color/black" />
 
+<<<<<<< HEAD
         <TextView
             android:id="@+id/JSon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+=======
+>>>>>>> master
     </FrameLayout>
 
     <android.support.design.widget.NavigationView

@@ -40,9 +40,10 @@ public class Fragment_Seance extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         tabLayout = view.findViewById(R.id.tablayout);
         viewPager = view.findViewById(R.id.viewpager);
-        viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
+        viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
 
         viewPagerAdapter.addFragment(new Fragment_Seance_1(),"Seance 1");
         viewPagerAdapter.addFragment(new Fragment_Seance_2(),"Seance 2");
@@ -50,7 +51,10 @@ public class Fragment_Seance extends Fragment {
 
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+    }
 
-        super.onViewCreated(view, savedInstanceState);
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

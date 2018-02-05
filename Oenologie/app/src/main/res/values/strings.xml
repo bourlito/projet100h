@@ -20,4 +20,18 @@
     <string name="frag_seance_2">frag seance 2</string>
     <string name="frag_seance_1">frag seance 1</string>
     <string name="contact"><![CDATA[Contact & Adresses]]></string>
+    <string name="carte_interactive_des_vignobles_de_france">carte interactive des vignobles de france</string>
+    <string name="loire">loire</string>
+    <string name="champagne">champagne</string>
+    <string name="bordeaux">bordeaux</string>
+    <string name="lorraine">lorraine</string>
+    <string name="alsace">alsace</string>
+    <string name="sud_ouest">Sud Ouest</string>
+    <string name="languedoc">languedoc</string>
+    <string name="provence_corse">provence corse</string>
+    <string name="rhone">rhone</string>
+    <string name="bourgogne">bourgogne</string>
+    <string name="savoie">savoie</string>
+    <string name="signin">demarrer</string>
+    <string name="cancel">annuler</string>
 </resources>
