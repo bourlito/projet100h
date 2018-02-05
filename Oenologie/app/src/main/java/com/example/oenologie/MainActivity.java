@@ -1,21 +1,31 @@
 package com.example.oenologie;
 
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,10 +49,17 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout myDrawer;
+    private ConstraintLayout cl;
     private ActionBarDrawerToggle myToggle;
     private TextView tv;
+    private EditText etcodesession;
+    private EditText etpseudo;
     private DatabaseHelper dbHelper = new DatabaseHelper(this);
-    FragmentTransaction fragmentTransaction;
+    private FragmentTransaction fragmentTransaction;
+    private Dialog dialog;
+    private NavigationView navigationView;
+    private View inflateDialog;
+    private Button btndemarrer;
 
     private static String url =
             "https://opendata.lillemetropole.fr/api/records/1.0/search/?dataset=mel_piscines&facet=commune&rows=-1";
@@ -53,26 +70,48 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         myDrawer = findViewById(R.id.myDrawer);
+        cl = findViewById(R.id.id_cl);
         myToggle = new ActionBarDrawerToggle(this,myDrawer,R.string.open,R.string.close);
-        NavigationView navigationView = findViewById(R.id.navView);
+        navigationView = findViewById(R.id.navView);
 
         myDrawer.addDrawerListener(myToggle);
         myToggle.syncState();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setupDrawerContent(navigationView);
 
         tv = findViewById(R.id.textintro);
 
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.my_transition);
         tv.startAnimation(myanim);
 
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_signin);
+        inflateDialog = getLayoutInflater().inflate(R.layout.dialog_signin,null);
+        btndemarrer = inflateDialog.findViewById(R.id.btndemarrer);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        cl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.show();
+                btndemarrer.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        etcodesession = inflateDialog.findViewById(R.id.codesession);
+                        etpseudo = inflateDialog.findViewById(R.id.pseudo);
+                        Toast.makeText(MainActivity.this, etpseudo.getText().toString()+""+etcodesession.getText().toString(), Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                        setupDrawerContent(navigationView);
+                    }
+                });
+            }
+        });
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.accueil:
-                        tv.setVisibility(View.INVISIBLE);
+                        tv.setVisibility(View.GONE);
+                        cl.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Accueil());
                         fragmentTransaction.commit();
@@ -82,7 +121,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.seance:
-                        tv.setVisibility(View.INVISIBLE);
+                        tv.setVisibility(View.GONE);
+                        cl.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Seance());
                         fragmentTransaction.commit();
@@ -92,7 +132,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.carte:
-                        tv.setVisibility(View.INVISIBLE);
+                        tv.setVisibility(View.GONE);
+                        cl.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Carte());
                         fragmentTransaction.commit();
@@ -102,7 +143,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.quizz:
-                        tv.setVisibility(View.INVISIBLE);
+                        tv.setVisibility(View.GONE);
+                        cl.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Quizz());
                         fragmentTransaction.commit();
@@ -112,7 +154,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.contact:
-                        tv.setVisibility(View.INVISIBLE);
+                        tv.setVisibility(View.GONE);
+                        cl.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Contact());
                         fragmentTransaction.commit();
@@ -142,4 +185,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }
