@@ -200,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
                     JSON_DATA.append(JSON_STRING).append("\n");
                 }
                 return JSON_DATA.toString().trim();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

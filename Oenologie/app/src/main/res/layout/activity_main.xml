@@ -40,14 +40,13 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display3"
             android:textColor="@color/black" />
 
-<<<<<<< HEAD
+
         <TextView
             android:id="@+id/JSon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-=======
->>>>>>> master
+
     </FrameLayout>
 
     <android.support.design.widget.NavigationView
