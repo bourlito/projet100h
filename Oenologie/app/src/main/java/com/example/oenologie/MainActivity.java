@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle myToggle;
     private TextView tv;
     private DatabaseHelper dbHelper = new DatabaseHelper(this);
-    private FragmentTransaction fragmentTransaction;
+    public FragmentTransaction fragmentTransaction;
     private NavigationView navigationView;
 
     String JSON_STRING ;
@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-<<<<<<< HEAD
+
 
     public void getJson(View view){
         new BackgroundTask().execute();
@@ -229,29 +229,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            TextView json = (TextView) findViewById(R.id.JSon);
+            TextView json = (TextView) findViewById(R.id.tvfrags1);
             json.setText(result);
         }
     }
 
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (myToggle.onOptionsItemSelected(item)){
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void setupDrawerContent(NavigationView navigationView){
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                return true;
-            }
-        });
-    }
-
-=======
->>>>>>> master
 }
