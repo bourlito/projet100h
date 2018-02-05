@@ -1,6 +1,7 @@
 package com.example.oenologie;
 
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -60,14 +61,9 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout cl;
     private ActionBarDrawerToggle myToggle;
     private TextView tv;
-    private EditText etcodesession;
-    private EditText etpseudo;
     private DatabaseHelper dbHelper = new DatabaseHelper(this);
     private FragmentTransaction fragmentTransaction;
-    private Dialog dialog;
     private NavigationView navigationView;
-    private View inflateDialog;
-    private Button btndemarrer;
 
     String JSON_STRING ;
 
@@ -89,28 +85,47 @@ public class MainActivity extends AppCompatActivity {
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.my_transition);
         tv.startAnimation(myanim);
 
-        dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dialog_signin);
-        inflateDialog = getLayoutInflater().inflate(R.layout.dialog_signin,null);
-        btndemarrer = inflateDialog.findViewById(R.id.btndemarrer);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         cl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.show();
-                btndemarrer.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        etcodesession = inflateDialog.findViewById(R.id.codesession);
-                        etpseudo = inflateDialog.findViewById(R.id.pseudo);
-                        Toast.makeText(MainActivity.this, etpseudo.getText().toString()+""+etcodesession.getText().toString(), Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                        setupDrawerContent(navigationView);
-                    }
-                });
+                    Intent intent = new Intent(MainActivity.this,PopUpLogActivity.class);
+                    startActivityForResult(intent,1);
+                }
+            });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (myToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void setupDrawerContent(NavigationView navigationView){
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                return true;
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1){
+            if (resultCode == Activity.RESULT_OK){
+                String codesession = data.getStringExtra("codesession");
+                String pseudo = data.getStringExtra("pseudo");
+                Toast.makeText(this, codesession+"\n"+pseudo, Toast.LENGTH_SHORT).show();
+
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                setupDrawerContent(navigationView);
+
+                cl.setVisibility(View.GONE);
+            }
+        }
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -175,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+<<<<<<< HEAD
 
     public void getJson(View view){
         new BackgroundTask().execute();
@@ -236,4 +252,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+=======
+>>>>>>> master
 }
