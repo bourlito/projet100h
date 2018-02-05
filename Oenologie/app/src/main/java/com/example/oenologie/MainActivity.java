@@ -1,6 +1,7 @@
 package com.example.oenologie;
 
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -74,9 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
         tv = findViewById(R.id.textintro);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setupDrawerContent(navigationView);
-
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.my_transition);
         tv.startAnimation(myanim);
 
@@ -84,9 +82,43 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                     Intent intent = new Intent(MainActivity.this,PopUpLogActivity.class);
-                    startActivity(intent);
+                    startActivityForResult(intent,1);
                 }
             });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (myToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void setupDrawerContent(NavigationView navigationView){
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                return true;
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1){
+            if (resultCode == Activity.RESULT_OK){
+                String codesession = data.getStringExtra("codesession");
+                String pseudo = data.getStringExtra("pseudo");
+                Toast.makeText(this, codesession+"\n"+pseudo, Toast.LENGTH_SHORT).show();
+
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                setupDrawerContent(navigationView);
+
+                cl.setVisibility(View.GONE);
+            }
+        }
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -151,22 +183,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (myToggle.onOptionsItemSelected(item)){
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void setupDrawerContent(NavigationView navigationView){
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                return true;
-            }
-        });
-    }
-
 }
