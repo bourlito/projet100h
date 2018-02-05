@@ -37,6 +37,5 @@
         android:layout_height="wrap_content"
         android:background="@color/burgundy"
         android:text="demarrer"
-        android:onClick="dismiss"
         android:textColor="@color/white" />
 </LinearLayout>

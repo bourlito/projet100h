@@ -94,12 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 btndemarrer.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        etcodesession = inflateDialog.findViewById(R.id.codesession);
-                        etpseudo = inflateDialog.findViewById(R.id.pseudo);
-                        Toast.makeText(MainActivity.this, etpseudo.getText().toString()+""+etcodesession.getText().toString(), Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                        setupDrawerContent(navigationView);
+                        Toast.makeText(MainActivity.this, "jfoklfsdkjfs", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
