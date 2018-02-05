@@ -35,6 +35,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout myDrawer;
@@ -43,8 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseHelper dbHelper = new DatabaseHelper(this);
     FragmentTransaction fragmentTransaction;
 
-    private static String url =
-            "https://opendata.lillemetropole.fr/api/records/1.0/search/?dataset=mel_piscines&facet=commune&rows=-1";
+    String JSON_STRING ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +131,49 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void getJson(View view){
+        new BackgroundTask().execute();
+
+    }
+
+    private class BackgroundTask extends AsyncTask<Void, Void, String> {
+        String JSON_URL;
+        @Override
+        protected void onPreExecute() {
+            JSON_URL ="http://10.122.151.10/test/seance1.php";
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            try {
+                StringBuilder JSON_DATA = new StringBuilder();
+                URL url = new URL(JSON_URL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                InputStream  in = httpURLConnection.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                while ((JSON_STRING = reader.readLine())!=null) {
+                    JSON_DATA.append(JSON_STRING).append("\n");
+                }
+                return JSON_DATA.toString().trim();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            TextView json = (TextView) findViewById(R.id.JSon);
+            json.setText(result);
+        }
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
