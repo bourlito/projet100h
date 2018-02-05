@@ -52,14 +52,9 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout cl;
     private ActionBarDrawerToggle myToggle;
     private TextView tv;
-    private EditText etcodesession;
-    private EditText etpseudo;
     private DatabaseHelper dbHelper = new DatabaseHelper(this);
     private FragmentTransaction fragmentTransaction;
-    private Dialog dialog;
     private NavigationView navigationView;
-    private View inflateDialog;
-    private Button btndemarrer;
 
     private static String url =
             "https://opendata.lillemetropole.fr/api/records/1.0/search/?dataset=mel_piscines&facet=commune&rows=-1";
@@ -79,26 +74,19 @@ public class MainActivity extends AppCompatActivity {
 
         tv = findViewById(R.id.textintro);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setupDrawerContent(navigationView);
+
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.my_transition);
         tv.startAnimation(myanim);
 
-        dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dialog_signin);
-        inflateDialog = getLayoutInflater().inflate(R.layout.dialog_signin,null);
-        btndemarrer = inflateDialog.findViewById(R.id.btndemarrer);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         cl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.show();
-                btndemarrer.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(MainActivity.this, "jfoklfsdkjfs", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
+                    Intent intent = new Intent(MainActivity.this,PopUpLogActivity.class);
+                    startActivity(intent);
+                }
+            });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
