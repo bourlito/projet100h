@@ -9,13 +9,6 @@
     android:background="@drawable/background"
     android:orientation="vertical">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/id_cl"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </android.support.constraint.ConstraintLayout>
-
     <FrameLayout
         android:id="@+id/flcontent"
         android:layout_width="match_parent"

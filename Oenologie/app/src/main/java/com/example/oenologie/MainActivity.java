@@ -50,7 +50,6 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout myDrawer;
-    private ConstraintLayout cl;
     private ActionBarDrawerToggle myToggle;
     private TextView tv;
     private DatabaseHelper dbHelper = new DatabaseHelper(this);
@@ -66,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         myDrawer = findViewById(R.id.myDrawer);
-        cl = findViewById(R.id.id_cl);
         myToggle = new ActionBarDrawerToggle(this,myDrawer,R.string.open,R.string.close);
         navigationView = findViewById(R.id.navView);
 
@@ -78,13 +76,66 @@ public class MainActivity extends AppCompatActivity {
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.my_transition);
         tv.startAnimation(myanim);
 
-        cl.setOnClickListener(new View.OnClickListener() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setupDrawerContent(navigationView);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                    Intent intent = new Intent(MainActivity.this,PopUpLogActivity.class);
-                    startActivityForResult(intent,1);
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.accueil:
+                        tv.setVisibility(View.GONE);
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.flcontent,new Fragment_Accueil());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("Accueil");
+                        item.setChecked(true);
+                        myDrawer.closeDrawers();
+                        break;
+
+                    case R.id.seance:
+                        tv.setVisibility(View.GONE);
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.flcontent,new Fragment_Seance());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("Séances");
+                        item.setChecked(true);
+                        myDrawer.closeDrawers();
+                        break;
+
+                    case R.id.carte:
+                        tv.setVisibility(View.GONE);
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.flcontent,new Fragment_Carte());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("Carte Intéractive");
+                        item.setChecked(true);
+                        myDrawer.closeDrawers();
+                        break;
+
+                    case R.id.quizz:
+                        tv.setVisibility(View.GONE);
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.flcontent,new Fragment_Quizz());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("Quizz!");
+                        item.setChecked(true);
+                        myDrawer.closeDrawers();
+                        break;
+
+                    case R.id.contact:
+                        tv.setVisibility(View.GONE);
+                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.flcontent,new Fragment_Contact());
+                        fragmentTransaction.commit();
+                        getSupportActionBar().setTitle("Contact & Adresses");
+                        item.setChecked(true);
+                        myDrawer.closeDrawers();
+                        break;
                 }
-            });
+                return true;
+            }
+        });
     }
 
     @Override
@@ -99,86 +150,6 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                return true;
-            }
-        });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==1){
-            if (resultCode == Activity.RESULT_OK){
-                String codesession = data.getStringExtra("codesession");
-                String pseudo = data.getStringExtra("pseudo");
-                Toast.makeText(this, codesession+"\n"+pseudo, Toast.LENGTH_SHORT).show();
-
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                setupDrawerContent(navigationView);
-
-                cl.setVisibility(View.GONE);
-            }
-        }
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.accueil:
-                        tv.setVisibility(View.GONE);
-                        cl.setVisibility(View.GONE);
-                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.flcontent,new Fragment_Accueil());
-                        fragmentTransaction.commit();
-                        getSupportActionBar().setTitle("Accueil");
-                        item.setChecked(true);
-                        myDrawer.closeDrawers();
-                        break;
-
-                    case R.id.seance:
-                        tv.setVisibility(View.GONE);
-                        cl.setVisibility(View.GONE);
-                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.flcontent,new Fragment_Seance());
-                        fragmentTransaction.commit();
-                        getSupportActionBar().setTitle("Séances");
-                        item.setChecked(true);
-                        myDrawer.closeDrawers();
-                        break;
-
-                    case R.id.carte:
-                        tv.setVisibility(View.GONE);
-                        cl.setVisibility(View.GONE);
-                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.flcontent,new Fragment_Carte());
-                        fragmentTransaction.commit();
-                        getSupportActionBar().setTitle("Carte Intéractive");
-                        item.setChecked(true);
-                        myDrawer.closeDrawers();
-                        break;
-
-                    case R.id.quizz:
-                        tv.setVisibility(View.GONE);
-                        cl.setVisibility(View.GONE);
-                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.flcontent,new Fragment_Quizz());
-                        fragmentTransaction.commit();
-                        getSupportActionBar().setTitle("Quizz!");
-                        item.setChecked(true);
-                        myDrawer.closeDrawers();
-                        break;
-
-                    case R.id.contact:
-                        tv.setVisibility(View.GONE);
-                        cl.setVisibility(View.GONE);
-                        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.flcontent,new Fragment_Contact());
-                        fragmentTransaction.commit();
-                        getSupportActionBar().setTitle("Contact & Adresses");
-                        item.setChecked(true);
-                        myDrawer.closeDrawers();
-                        break;
-                }
                 return true;
             }
         });

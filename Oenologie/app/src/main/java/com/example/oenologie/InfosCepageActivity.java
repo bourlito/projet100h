@@ -1,6 +1,6 @@
 package com.example.oenologie;
 
-import android.app.ActionBar;
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -9,6 +9,7 @@ public class InfosCepageActivity extends AppCompatActivity {
     private TextView tvIntro;
     private TextView tvContenu;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -154,7 +155,7 @@ public class InfosCepageActivity extends AppCompatActivity {
                         "Les meilleurs vins datent des millésimes 1988, 1990, 1995, 2002 et 2005.");
                 break;
 
-            case "Rhone":
+            case "Rhône":
                 tvContenu.setText("Superficie de la vigne du Rhône :\n" +
                         "La taille du vignoble est de 73 838 hectares classés en AOC-AOP." +
                         "\n" + "\n" +
