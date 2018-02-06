@@ -134,7 +134,7 @@ public class Fragment_Carte extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),InfosCepageActivity.class);
-                intent.putExtra("zone","Rhone");
+                intent.putExtra("zone","Rhône");
                 startActivity(intent);
             }
         });

@@ -6,7 +6,7 @@
     tools:context="com.example.oenologie.Fragments.Fragment_Quizz">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvQuestiion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Première question..."
@@ -15,6 +15,7 @@
         android:textColor="@color/black" />
 
     <LinearLayout
+        android:id="@+id/LLV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
