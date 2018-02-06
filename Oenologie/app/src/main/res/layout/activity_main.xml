@@ -16,12 +16,11 @@
 
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
             android:onClick="getJson"
-            />
+            android:text="Button" />
 
         <TextView
             android:id="@+id/textintro"
@@ -50,9 +49,19 @@
         android:background="@color/black"
         android:isScrollContainer="false"
         android:theme="@style/NavDrawerStyle"
+        app:headerLayout="@layout/nav_header"
         app:itemIconTint="@drawable/drawer_item_color"
         app:itemTextColor="@drawable/drawer_item_color"
         app:menu="@menu/my_menu">
+
+        <ImageButton
+            android:id="@+id/btnFb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:backgroundTint="@color/white"
+            android:layout_marginBottom="20dp"
+            app:srcCompat="@drawable/ic_facebook" />
 
     </android.support.design.widget.NavigationView>
 

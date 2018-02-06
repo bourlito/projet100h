@@ -14,7 +14,7 @@
         <item name="colorAccent">@color/white</item>
         <item name="listPreferredItemHeightSmall">60sp</item>
         <item name="android:textSize">17sp</item>
-        <item name="android:layout_marginTop">15sp</item>
+        <item name="android:layout_marginTop">5sp</item>
         <item name="android:layout_marginLeft">8sp</item>
     </style>
 

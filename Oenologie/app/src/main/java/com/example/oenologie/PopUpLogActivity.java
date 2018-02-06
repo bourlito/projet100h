@@ -33,15 +33,15 @@ public class PopUpLogActivity extends AppCompatActivity {
                 codesession = etcodesession.getText().toString();
                 pseudo = etpseudo.getText().toString();
                 Intent returnIntent = new Intent();
-                if (codesession.equals("12345THET") && !pseudo.equals("") || codesession.equals("") && !pseudo.equals("")){
+                if (codesession.equals("12345THET") && !pseudo.equals("")){
                     returnIntent.putExtra("codesession",codesession);
                     returnIntent.putExtra("pseudo",pseudo);
                     setResult(Activity.RESULT_OK,returnIntent);
                     finish();
-                }else if (!codesession.equals("12345THET") && !codesession.equals("")) {
-                    Toast.makeText(PopUpLogActivity.this, "CODE SESSION INCORRECT", Toast.LENGTH_LONG).show();
-                }else{
+                }else if (pseudo.equals("")){
                     Toast.makeText(PopUpLogActivity.this, "PSEUDO INVALIDE", Toast.LENGTH_SHORT).show();
+                }else if (!codesession.equals("12345THET")){
+                    Toast.makeText(PopUpLogActivity.this, "CODE SESSION INVALIDE", Toast.LENGTH_SHORT).show();
                 }
             }
         });

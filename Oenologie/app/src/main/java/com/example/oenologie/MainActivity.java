@@ -1,58 +1,35 @@
-﻿package com.example.oenologie;
+package com.example.oenologie;
 
-
-import android.app.Activity;
-import android.app.Dialog;
-import android.content.DialogInterface;
+import android.app.SearchManager;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.oenologie.Classes.Utilisateur;
 import com.example.oenologie.Fragments.Fragment_Accueil;
 import com.example.oenologie.Fragments.Fragment_Carte;
 import com.example.oenologie.Fragments.Fragment_Contact;
 import com.example.oenologie.Fragments.Fragment_Quizz;
 import com.example.oenologie.Fragments.Fragment_Seance;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
@@ -61,8 +38,14 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle myToggle;
     private TextView tv;
     private DatabaseHelper dbHelper = new DatabaseHelper(this);
-    public FragmentTransaction fragmentTransaction;
+    private FragmentTransaction fragmentTransaction;
     private NavigationView navigationView;
+    private Button btnTest;
+    private ImageButton btnFb;
+    private View hView;
+    private TextView nav_user;
+
+    public static Utilisateur utilisateur = new Utilisateur("",0);
 
     String JSON_STRING ;
 
@@ -74,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         myDrawer = findViewById(R.id.myDrawer);
         myToggle = new ActionBarDrawerToggle(this,myDrawer,R.string.open,R.string.close);
         navigationView = findViewById(R.id.navView);
+        btnTest = findViewById(R.id.btnTest);
+        btnFb = navigationView.findViewById(R.id.btnFb);
 
         myDrawer.addDrawerListener(myToggle);
         myToggle.syncState();
@@ -86,12 +71,17 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupDrawerContent(navigationView);
 
+        hView = navigationView.getHeaderView(0);
+        nav_user = hView.findViewById(R.id.testPseudoNav);
+        nav_user.setText("".equals(utilisateur.getPseudo()) || utilisateur.getPseudo().equals(null) ? "Non connecté" : String.format("%s", utilisateur.getPseudo()));
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.accueil:
                         tv.setVisibility(View.GONE);
+                        btnTest.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Accueil());
                         fragmentTransaction.commit();
@@ -102,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.seance:
                         tv.setVisibility(View.GONE);
+                        btnTest.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Seance());
                         fragmentTransaction.commit();
@@ -112,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.carte:
                         tv.setVisibility(View.GONE);
+                        btnTest.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Carte());
                         fragmentTransaction.commit();
@@ -122,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.quizz:
                         tv.setVisibility(View.GONE);
+                        btnTest.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Quizz());
                         fragmentTransaction.commit();
@@ -132,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.contact:
                         tv.setVisibility(View.GONE);
+                        btnTest.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Contact());
                         fragmentTransaction.commit();
@@ -141,6 +135,15 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
                 return true;
+            }
+        });
+
+        btnFb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                intent.putExtra(SearchManager.QUERY, "https://www.facebook.com/oenologie.hei.5?ref=br_rs");
+                startActivity(intent);
             }
         });
     }
@@ -182,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            TextView json = (TextView) findViewById(R.id.tvfrags1);
+            TextView json = findViewById(R.id.tvfrags1);
             json.setText(result);
         }
     }
