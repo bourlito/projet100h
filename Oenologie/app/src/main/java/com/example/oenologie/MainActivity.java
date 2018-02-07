@@ -1,7 +1,9 @@
 package com.example.oenologie;
 
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,23 +33,27 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.jar.Attributes;
+
+import static com.example.oenologie.PopUpLogActivity.MyPREFERENCES;
+import static com.example.oenologie.PopUpLogActivity.Name;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout myDrawer;
     private ActionBarDrawerToggle myToggle;
-    private TextView tv;
     private DatabaseHelper dbHelper = new DatabaseHelper(this);
     private FragmentTransaction fragmentTransaction;
+
     private NavigationView navigationView;
-    private Button btnTest;
-    private ImageButton btnFb;
     private View hView;
+
+    private ImageButton btnFb;
     private TextView nav_user;
+    private TextView tvIntro;
 
-    public static Utilisateur utilisateur = new Utilisateur("",0);
-
-    String JSON_STRING ;
+    SharedPreferences mySettings;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,33 +61,36 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         myDrawer = findViewById(R.id.myDrawer);
-        myToggle = new ActionBarDrawerToggle(this,myDrawer,R.string.open,R.string.close);
         navigationView = findViewById(R.id.navView);
-        btnTest = findViewById(R.id.btnTest);
         btnFb = navigationView.findViewById(R.id.btnFb);
+        tvIntro = findViewById(R.id.textintro);
+
+        hView = navigationView.getHeaderView(0);
+        nav_user = hView.findViewById(R.id.testPseudoNav);
 
         myDrawer.addDrawerListener(myToggle);
+        myToggle = new ActionBarDrawerToggle(this,myDrawer,R.string.open,R.string.close);
         myToggle.syncState();
-
-        tv = findViewById(R.id.textintro);
-
-        Animation myanim = AnimationUtils.loadAnimation(this, R.anim.my_transition);
-        tv.startAnimation(myanim);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupDrawerContent(navigationView);
 
-        hView = navigationView.getHeaderView(0);
-        nav_user = hView.findViewById(R.id.testPseudoNav);
-        nav_user.setText("".equals(utilisateur.getPseudo()) || utilisateur.getPseudo().equals(null) ? "Non connecté" : String.format("%s", utilisateur.getPseudo()));
+        Animation myanim = AnimationUtils.loadAnimation(this, R.anim.my_transition);
+        tvIntro.startAnimation(myanim);
+
+        mySettings = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        editor = mySettings.edit();
+        editor.clear();
+        editor.apply();
+        
+        nav_user.setText("".equals(mySettings.getString(Name,"")) || mySettings.getString(Name,null).equals(null) ? "Non connecté" : String.format("%s", mySettings.getString(Name,"")));
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.accueil:
-                        tv.setVisibility(View.GONE);
-                        btnTest.setVisibility(View.GONE);
+                        tvIntro.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Accueil());
                         fragmentTransaction.commit();
@@ -91,8 +100,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.seance:
-                        tv.setVisibility(View.GONE);
-                        btnTest.setVisibility(View.GONE);
+                        tvIntro.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Seance());
                         fragmentTransaction.commit();
@@ -102,8 +110,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.carte:
-                        tv.setVisibility(View.GONE);
-                        btnTest.setVisibility(View.GONE);
+                        tvIntro.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Carte());
                         fragmentTransaction.commit();
@@ -113,8 +120,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.quizz:
-                        tv.setVisibility(View.GONE);
-                        btnTest.setVisibility(View.GONE);
+                        tvIntro.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Quizz());
                         fragmentTransaction.commit();
@@ -124,8 +130,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.contact:
-                        tv.setVisibility(View.GONE);
-                        btnTest.setVisibility(View.GONE);
+                        tvIntro.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Contact());
                         fragmentTransaction.commit();
@@ -148,48 +153,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void getJson(View view){
-        new BackgroundTask().execute();
-
-    }
-
-    private class BackgroundTask extends AsyncTask<Void, Void, String> {
-        String JSON_URL;
-        @Override
-        protected void onPreExecute() {
-            JSON_URL ="http://192.168.0.27/test/seance1.php";
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-            try {
-                StringBuilder JSON_DATA = new StringBuilder();
-                URL url = new URL(JSON_URL);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                InputStream  in = httpURLConnection.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-                while ((JSON_STRING = reader.readLine())!=null) {
-                    JSON_DATA.append(JSON_STRING).append("\n");
-                }
-                return JSON_DATA.toString().trim();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            TextView json = findViewById(R.id.tvfrags1);
-            json.setText(result);
-        }
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (myToggle.onOptionsItemSelected(item)){
@@ -205,5 +168,11 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        nav_user.setText("".equals(mySettings.getString(Name,"")) || mySettings.getString(Name,null).equals(null) ? "Non connecté" : String.format("%s", mySettings.getString(Name,"")));
     }
 }

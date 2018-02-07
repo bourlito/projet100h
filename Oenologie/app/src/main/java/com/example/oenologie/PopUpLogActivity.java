@@ -2,7 +2,9 @@ package com.example.oenologie;
 
 import android.app.Activity;
 import android.app.Instrumentation;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +21,11 @@ public class PopUpLogActivity extends AppCompatActivity {
     private String codesession;
     private String pseudo;
 
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Name = "nameKey";
+    SharedPreferences mySettings;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +33,9 @@ public class PopUpLogActivity extends AppCompatActivity {
         etcodesession = findViewById(R.id.codesession);
         etpseudo = findViewById(R.id.pseudo);
         btndemarrer = findViewById(R.id.btndemarrer);
+
+        mySettings = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE );
+        editor = mySettings.edit();
 
         btndemarrer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +47,8 @@ public class PopUpLogActivity extends AppCompatActivity {
                     returnIntent.putExtra("codesession",codesession);
                     returnIntent.putExtra("pseudo",pseudo);
                     setResult(Activity.RESULT_OK,returnIntent);
+                    editor.putString(Name, pseudo);
+                    editor.commit();
                     finish();
                 }else if (pseudo.equals("")){
                     Toast.makeText(PopUpLogActivity.this, "PSEUDO INVALIDE", Toast.LENGTH_SHORT).show();
