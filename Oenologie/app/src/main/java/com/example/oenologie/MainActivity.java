@@ -65,8 +65,6 @@ public class MainActivity extends AppCompatActivity {
     public FragmentTransaction fragmentTransaction;
     private NavigationView navigationView;
 
-    String JSON_STRING ;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -192,46 +190,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void getJson(View view){
-        new BackgroundTask().execute();
 
-    }
 
-    private class BackgroundTask extends AsyncTask<Void, Void, String> {
-        String JSON_URL;
-        @Override
-        protected void onPreExecute() {
-            JSON_URL ="http://192.168.0.27/test/seance1.php";
-        }
 
-        @Override
-        protected String doInBackground(Void... params) {
-            try {
-                StringBuilder JSON_DATA = new StringBuilder();
-                URL url = new URL(JSON_URL);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                InputStream  in = httpURLConnection.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-                while ((JSON_STRING = reader.readLine())!=null) {
-                    JSON_DATA.append(JSON_STRING).append("\n");
-                }
-                return JSON_DATA.toString().trim();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            TextView json = (TextView) findViewById(R.id.tvfrags1);
-            json.setText(result);
-        }
-    }
 
 }
