@@ -28,11 +28,6 @@ public class Fragment_Seance_1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        RecupererJson recupererJson = new RecupererJson(getContext());
-        recupererJson.execute();
-        String json = getArguments().getString("json");
-        Toast.makeText(getContext(),json,Toast.LENGTH_LONG).show();
-
         return inflater.inflate(R.layout.fragment_fragment_seance_1, container, false);
     }
 
@@ -40,8 +35,9 @@ public class Fragment_Seance_1 extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tvfrags1 = view.findViewById(R.id.tvfrags1);
-        RecupererJson recupererJson = new RecupererJson(getContext());
-        recupererJson.execute();
+        RecupererJson recupererJson = new RecupererJson();
+
+        tvfrags1.setText(recupererJson.execute().toString());
 
     }
 
