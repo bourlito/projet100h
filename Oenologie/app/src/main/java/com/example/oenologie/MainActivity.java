@@ -52,12 +52,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView nav_user;
     private TextView tvIntro;
 
-<<<<<<< HEAD
     SharedPreferences mySettings;
     SharedPreferences.Editor editor;
 
-=======
->>>>>>> thomas
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-<<<<<<< HEAD
 
         btnFb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,14 +169,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-=======
-    }
-
-
-
-
-
->>>>>>> thomas
 
     @Override
     protected void onResume() {

@@ -11,13 +11,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.oenologie.ConnexionTomcat.AsyncResponse;
 import com.example.oenologie.ConnexionTomcat.RecupererJson;
 import com.example.oenologie.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_Seance_1 extends Fragment {
+public class Fragment_Seance_1 extends Fragment implements AsyncResponse{
     private TextView tvfrags1;
 
     public Fragment_Seance_1() {
@@ -28,11 +29,6 @@ public class Fragment_Seance_1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        RecupererJson recupererJson = new RecupererJson(getContext());
-        recupererJson.execute();
-        String json = getArguments().getString("json");
-        Toast.makeText(getContext(),json,Toast.LENGTH_LONG).show();
-
         return inflater.inflate(R.layout.fragment_fragment_seance_1, container, false);
     }
 
@@ -40,10 +36,14 @@ public class Fragment_Seance_1 extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tvfrags1 = view.findViewById(R.id.tvfrags1);
-        RecupererJson recupererJson = new RecupererJson(getContext());
+        RecupererJson recupererJson = new RecupererJson();
+        recupererJson.delegate = this;
         recupererJson.execute();
-
     }
 
 
+    @Override
+    public void processFinish(String output) {
+        tvfrags1.setText(output);
+    }
 }
