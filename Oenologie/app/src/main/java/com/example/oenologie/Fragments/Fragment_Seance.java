@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.oenologie.ConnexionTomcat.RecupererJson;
 import com.example.oenologie.Fragments.Fragments_Seances.Fragment_Seance_1;
 import com.example.oenologie.Fragments.Fragments_Seances.Fragment_Seance_2;
 import com.example.oenologie.Fragments.Fragments_Seances.Fragment_Seance_3;
@@ -31,7 +32,6 @@ public class Fragment_Seance extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,7 +51,9 @@ public class Fragment_Seance extends Fragment {
 
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+
     }
+
 
     @Override
     public void onDestroy() {
