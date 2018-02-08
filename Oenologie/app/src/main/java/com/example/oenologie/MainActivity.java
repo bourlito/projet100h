@@ -52,11 +52,17 @@ public class MainActivity extends AppCompatActivity {
     private TextView nav_user;
     private TextView tvIntro;
 
+<<<<<<< HEAD
 
     SharedPreferences mySettings;
     SharedPreferences.Editor editor;
 
 
+=======
+    SharedPreferences mySettings;
+    SharedPreferences.Editor editor;
+
+>>>>>>> 7ffab8547441432187b04294f21dd5f4c432c8b8
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -171,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+<<<<<<< HEAD
 
 
 
@@ -179,6 +186,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+=======
+>>>>>>> 7ffab8547441432187b04294f21dd5f4c432c8b8
 
     @Override
     protected void onResume() {

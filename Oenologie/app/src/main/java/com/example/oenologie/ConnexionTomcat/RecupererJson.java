@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.oenologie.Fragments.Fragment_Seance;
 import com.example.oenologie.Fragments.Fragments_Seances.Fragment_Seance_1;
+import com.example.oenologie.MainActivity;
 import com.example.oenologie.R;
 
 import java.io.BufferedReader;
@@ -25,20 +26,10 @@ import java.net.URL;
 
 
 public class RecupererJson extends AsyncTask<Void, Void, String> {
-    String JSON_URL;
-
+    String JSON_URL = "192.168.0.34/php/seance1";
     String JSON_STRING;
 
-    Context context;
-
-    public RecupererJson(Context context) {
-        this.context = context.getApplicationContext();
-    }
-
-    @Override
-    protected void onPreExecute() {
-        JSON_URL = "http://192.168.0.27/test/seance1.php";
-    }
+    public AsyncResponse delegate = null;
 
     @Override
     protected String doInBackground(Void... params) {
@@ -51,6 +42,9 @@ public class RecupererJson extends AsyncTask<Void, Void, String> {
             while ((JSON_STRING = reader.readLine()) != null) {
                 JSON_DATA.append(JSON_STRING).append("\n");
             }
+            reader.close();
+            in.close();
+            httpURLConnection.disconnect();
             return JSON_DATA.toString().trim();
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,19 +53,7 @@ public class RecupererJson extends AsyncTask<Void, Void, String> {
     }
 
     @Override
-    protected void onProgressUpdate(Void... values) {
-        super.onProgressUpdate(values);
-    }
-
-    @Override
     protected void onPostExecute(String JSON_STRING) {
-        Intent intent = new Intent(context,Fragment_Seance_1.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("json",JSON_STRING);
-        intent.putExtras(bundle);
-        Fragment_Seance_1 fragment_seance_1 = new Fragment_Seance_1();
-        fragment_seance_1.setArguments(bundle);
-        fragment_seance_1.startActivity(intent);
+        delegate.processFinish(JSON_STRING);
     }
-
 }
