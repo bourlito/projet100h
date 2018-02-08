@@ -25,7 +25,7 @@ public class Utilisateur {
         return Highscore;
     }
 
-    public void setHighscore(int highscore) {
-        Highscore = highscore;
+    public void setHighscore() {
+        Highscore++;
     }
 }
