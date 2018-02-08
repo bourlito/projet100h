@@ -38,7 +38,7 @@ public class Fragment_Seance_1 extends Fragment implements AsyncResponse{
         tvfrags1 = view.findViewById(R.id.tvfrags1);
         RecupererJson recupererJson = new RecupererJson();
         recupererJson.delegate = this;
-        recupererJson.execute();
+        recupererJson.execute("http://192.168.0.34/php/seance1");
     }
 
 

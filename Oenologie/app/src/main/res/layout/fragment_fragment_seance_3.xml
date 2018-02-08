@@ -5,13 +5,24 @@
     tools:context="com.example.oenologie.Fragments.Fragments_Seances.Fragment_Seance_3">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/tvfrags3"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="@string/frag_seance_3"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textColor="@color/black" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tvfrags3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/frag_seance_3"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
