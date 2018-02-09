@@ -16,8 +16,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.oenologie.ConnexionTomcat.AsyncResponse;
 import com.example.oenologie.PopUpLogActivity;
 import com.example.oenologie.R;
+
+import org.json.JSONException;
 
 import static com.example.oenologie.PopUpLogActivity.MyPREFERENCES;
 import static com.example.oenologie.PopUpLogActivity.Name;
@@ -26,7 +29,7 @@ import static com.example.oenologie.PopUpLogActivity.Name;
  * A simple {@link Fragment} subclass.
  *
  */
-public class Fragment_Quizz extends Fragment {
+public class Fragment_Quizz extends Fragment implements AsyncResponse{
     private int a=0;
     private LinearLayout LL2;
     private LinearLayout LL4;
@@ -34,6 +37,7 @@ public class Fragment_Quizz extends Fragment {
     private TextView tvQuestion;
     private String codesession;
     private String pseudo;
+    private String url;
 
     SharedPreferences mySettings;
 
@@ -80,5 +84,10 @@ public class Fragment_Quizz extends Fragment {
                 tvQuestion.setVisibility(View.VISIBLE);
             }
         }
+    }
+
+    @Override
+    public void processFinish(String output) throws JSONException{
+
     }
 }
