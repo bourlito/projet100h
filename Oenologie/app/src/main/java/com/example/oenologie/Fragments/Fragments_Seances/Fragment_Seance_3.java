@@ -17,6 +17,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -51,11 +56,19 @@ public class Fragment_Seance_3 extends Fragment implements AsyncResponse{
 
 
     @Override
-    public void processFinish(String output) throws JSONException {
+    public void processFinish(String output) throws JSONException, ParseException {
         JSONObject mainObject = new JSONObject(output);
         JSONArray mainArray = mainObject.getJSONArray("server_response");
         JSONObject unicObject = mainArray.getJSONObject(0);
-        tvfrags3.setText(unicObject.getString("Date"));
+
+        DateFormat inputformat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat outputformat = new SimpleDateFormat("dd-MM-yyyy");
+
+        String date = unicObject.getString("Date");
+        Date date1 = inputformat.parse(date);
+        String dateparse = outputformat.format(date1);
+
+        tvfrags3.setText(dateparse);
         tvfrags32.setText(unicObject.getString("Libelle"));
         tvfrags33.setText(unicObject.getString("Informations"));
     }

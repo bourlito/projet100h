@@ -17,6 +17,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -42,21 +47,28 @@ public class Fragment_Seance_2 extends Fragment implements AsyncResponse{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tvfrags2 = view.findViewById(R.id.tvfrags2);
-
-
+        tvfrags22 = view.findViewById(R.id.tvfrags22);
+        tvfrags23 = view.findViewById(R.id.tvfrags23);
         RecupererJson recupererJson = new RecupererJson();
         recupererJson.delegate = this;
-        recupererJson.execute("http://192.168.0.27/test/seance2.php");
-
+        recupererJson.execute(url);
     }
     
 
     @Override
-    public void processFinish(String output) throws JSONException{
+    public void processFinish(String output) throws JSONException, ParseException {
         JSONObject mainObject = new JSONObject(output);
         JSONArray mainArray = mainObject.getJSONArray("server_response");
         JSONObject unicObject = mainArray.getJSONObject(0);
-        tvfrags2.setText(unicObject.getString("Date"));
+
+        DateFormat inputformat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat outputformat = new SimpleDateFormat("dd-MM-yyyy");
+
+        String date = unicObject.getString("Date");
+        Date date1 = inputformat.parse(date);
+        String dateparse = outputformat.format(date1);
+
+        tvfrags2.setText(dateparse);
         tvfrags22.setText(unicObject.getString("Libelle"));
         tvfrags23.setText(unicObject.getString("Informations"));}
 }

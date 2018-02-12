@@ -16,6 +16,12 @@ import com.example.oenologie.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,7 +50,6 @@ public class Fragment_Seance_1 extends Fragment implements AsyncResponse{
         tvfrags1 = view.findViewById(R.id.tvfrags1);
         RecupererJson recupererJson = new RecupererJson();
         recupererJson.delegate = this;
-        recupererJson.execute("http://192.168.0.27/test/seance1.php");
 
 
         tvfrags1 = view.findViewById(R.id.tvfrags1);;
@@ -57,11 +62,18 @@ public class Fragment_Seance_1 extends Fragment implements AsyncResponse{
 
 
     @Override
-    public void processFinish(String output) throws JSONException {
+    public void processFinish(String output) throws JSONException, ParseException {
         JSONObject mainObject = new JSONObject(output);
         JSONArray mainArray = mainObject.getJSONArray("server_response");
         JSONObject unicObject = mainArray.getJSONObject(0);
-        tvfrags1.setText(unicObject.getString("Date"));
+        DateFormat inputformat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat outputformat = new SimpleDateFormat("dd-MM-yyyy");
+
+        String date = unicObject.getString("Date");
+        Date date1 = inputformat.parse(date);
+        String dateparse = outputformat.format(date1);
+
+        tvfrags1.setText(dateparse);
         tvfrags12.setText(unicObject.getString("Libelle"));
         tvfrags13.setText(unicObject.getString("Informations"));
     }

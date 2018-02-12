@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
 
 /**
  * Created by etienne on 05/12/2017.
@@ -28,8 +29,6 @@ import java.net.URL;
 
 
 public class RecupererJson extends AsyncTask<String, Void, String> {
-
-    String JSON_URL = "http://192.168.0.27/test/seance1.php";
 
     private String JSON_STRING;
 
@@ -61,6 +60,8 @@ public class RecupererJson extends AsyncTask<String, Void, String> {
         try {
             delegate.processFinish(JSON_STRING);
         } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
     }
