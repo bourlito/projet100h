@@ -13,11 +13,18 @@ import com.example.oenologie.ConnexionTomcat.AsyncResponse;
 import com.example.oenologie.ConnexionTomcat.RecupererJson;
 import com.example.oenologie.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class Fragment_Seance_2 extends Fragment implements AsyncResponse{
     private TextView tvfrags2;
+    private TextView tvfrags22;
+    private TextView tvfrags23;
+    private String url = "http://10.34.170.211/php/seance2";
 
     public Fragment_Seance_2() {
         // Required empty public constructor
@@ -35,6 +42,7 @@ public class Fragment_Seance_2 extends Fragment implements AsyncResponse{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tvfrags2 = view.findViewById(R.id.tvfrags2);
+<<<<<<< HEAD
 
         RecupererJson recupererJson = new RecupererJson();
         recupererJson.delegate = this;
@@ -46,5 +54,21 @@ public class Fragment_Seance_2 extends Fragment implements AsyncResponse{
     @Override
     public void processFinish(String output) {
         tvfrags2.setText(output);
+=======
+        tvfrags22 = view.findViewById(R.id.tvfrags22);
+        tvfrags23 = view.findViewById(R.id.tvfrags23);
+        RecupererJson recupererJson = new RecupererJson();
+        recupererJson.delegate = this;
+        recupererJson.execute(url);
+>>>>>>> aea042677202d347bfdc318367d2668e52a9cdb6
     }
+
+    @Override
+    public void processFinish(String output) throws JSONException{
+        JSONObject mainObject = new JSONObject(output);
+        JSONArray mainArray = mainObject.getJSONArray("server_response");
+        JSONObject unicObject = mainArray.getJSONObject(0);
+        tvfrags2.setText(unicObject.getString("Date"));
+        tvfrags22.setText(unicObject.getString("libelle"));
+        tvfrags23.setText(unicObject.getString("Infos"));}
 }

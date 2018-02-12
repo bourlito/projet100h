@@ -45,18 +45,12 @@ public class Fragment_Seance extends Fragment {
         viewPager = view.findViewById(R.id.viewpager);
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
 
-        viewPagerAdapter.addFragment(new Fragment_Seance_1(),"Seance 1");
-        viewPagerAdapter.addFragment(new Fragment_Seance_2(),"Seance 2");
-        viewPagerAdapter.addFragment(new Fragment_Seance_3(),"Seance 3");
+        viewPagerAdapter.addFragment(new Fragment_Seance_1(), "Seance 1");
+        viewPagerAdapter.addFragment(new Fragment_Seance_2(), "Seance 2");
+        viewPagerAdapter.addFragment(new Fragment_Seance_3(), "Seance 3");
 
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
-    }
-
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 }

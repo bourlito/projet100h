@@ -14,6 +14,8 @@ import com.example.oenologie.Fragments.Fragments_Seances.Fragment_Seance_1;
 import com.example.oenologie.MainActivity;
 import com.example.oenologie.R;
 
+import org.json.JSONException;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -26,9 +28,13 @@ import java.net.URL;
 
 
 public class RecupererJson extends AsyncTask<String, Void, String> {
+<<<<<<< HEAD
     String JSON_URL = "http://192.168.0.27/test/seance1.php";
     String JSON_STRING;
 
+=======
+    private String JSON_STRING;
+>>>>>>> aea042677202d347bfdc318367d2668e52a9cdb6
     public AsyncResponse delegate = null;
 
     @Override
@@ -54,6 +60,10 @@ public class RecupererJson extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String JSON_STRING) {
-        delegate.processFinish(JSON_STRING);
+        try {
+            delegate.processFinish(JSON_STRING);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
