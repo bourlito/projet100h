@@ -1,23 +1,14 @@
 package com.example.oenologie.Fragments.Fragments_Seances;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.oenologie.ConnexionTomcat.AsyncResponse;
 import com.example.oenologie.ConnexionTomcat.RecupererJson;
 import com.example.oenologie.R;
@@ -33,7 +24,7 @@ public class Fragment_Seance_1 extends Fragment implements AsyncResponse{
     private TextView tvfrags1;
     private TextView tvfrags12;
     private TextView tvfrags13;
-    private String url = "https://thomas-chevalier.fr/android/seance1.php";
+    private String url = "http://10.122.5.222/php/seance1.php";
 
     public Fragment_Seance_1() {
         // Required empty public constructor
@@ -71,7 +62,7 @@ public class Fragment_Seance_1 extends Fragment implements AsyncResponse{
         JSONArray mainArray = mainObject.getJSONArray("server_response");
         JSONObject unicObject = mainArray.getJSONObject(0);
         tvfrags1.setText(unicObject.getString("Date"));
-        tvfrags12.setText(unicObject.getString("libelle"));
-        tvfrags13.setText(unicObject.getString("Infos"));
+        tvfrags12.setText(unicObject.getString("Libelle"));
+        tvfrags13.setText(unicObject.getString("Informations"));
     }
 }
