@@ -4,7 +4,7 @@ $username="dbo722523693";
 $password="strasbourg";  
 $hostname = "db722523693.db.1and1.com";
 $database = "db722523693";  
-$sql = "SELECT * FROM `seance` WHERE Id_seance=1";
+$sql = "SELECT * FROM `seance` WHERE Id_seance=3";
 //connection string with database  
 $dbhandle = mysqli_connect($hostname, $username, $password, $database)  
 or die("Unable to connect to MySQL");  
