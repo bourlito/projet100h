@@ -24,7 +24,7 @@ public class Fragment_Seance_2 extends Fragment implements AsyncResponse{
     private TextView tvfrags2;
     private TextView tvfrags22;
     private TextView tvfrags23;
-    private String url = "http://10.122.5.222/php/seance2";
+    private String url = "https://thomas-chevalier.fr/android/seance2.php";
 
     public Fragment_Seance_2() {
         // Required empty public constructor
