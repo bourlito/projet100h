@@ -23,6 +23,7 @@ public class PopUpLogActivity extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String Name = "nameKey";
+    public static final String Code = "codeKey";
     SharedPreferences mySettings;
     SharedPreferences.Editor editor;
 
@@ -43,16 +44,17 @@ public class PopUpLogActivity extends AppCompatActivity {
                 codesession = etcodesession.getText().toString();
                 pseudo = etpseudo.getText().toString();
                 Intent returnIntent = new Intent();
-                if (codesession.equals("12345THET") && !pseudo.equals("")){
+                if (codesession.equals("171023") && !pseudo.equals("") || codesession.equals("180129") && !pseudo.equals("") || codesession.equals("180312") && !pseudo.equals("")){
                     returnIntent.putExtra("codesession",codesession);
                     returnIntent.putExtra("pseudo",pseudo);
                     setResult(Activity.RESULT_OK,returnIntent);
                     editor.putString(Name, pseudo);
-                    editor.commit();
+                    editor.putString(Code, codesession);
+                    editor.apply();
                     finish();
                 }else if (pseudo.equals("")){
                     Toast.makeText(PopUpLogActivity.this, "PSEUDO INVALIDE", Toast.LENGTH_SHORT).show();
-                }else if (!codesession.equals("12345THET")){
+                }else if (!codesession.equals("171023") || !codesession.equals("180129") || !codesession.equals("180312")){
                     Toast.makeText(PopUpLogActivity.this, "CODE SESSION INVALIDE", Toast.LENGTH_SHORT).show();
                 }
             }

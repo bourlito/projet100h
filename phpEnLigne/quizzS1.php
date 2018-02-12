@@ -4,7 +4,7 @@ $username="dbo722523693";
 $password="strasbourg";  
 $hostname = "db722523693.db.1and1.com";
 $database = "db722523693";  
-$sql = "SELECT correspondre.Id_question, question.Libelle_question, reponse.Libelle_reponse, reponse.Correct, seance.Code_quizz FROM question INNER JOIN correspondre ON question.Id_question = correspondre.Id_question INNER JOIN reponse ON correspondre.Id_reponse = reponse.Id_reponse INNER JOIN poser ON question.Id_question = poser.Id_question INNER JOIN seance ON seance.Id_seance = poser.Id_seance ORDER BY correspondre.Id_question";  
+$sql = "SELECT correspondre.Id_question, question.Libelle_question, reponse.Libelle_reponse, reponse.Correct, seance.Code_quizz FROM question INNER JOIN correspondre ON question.Id_question = correspondre.Id_question INNER JOIN reponse ON correspondre.Id_reponse = reponse.Id_reponse INNER JOIN poser ON question.Id_question = poser.Id_question INNER JOIN seance ON seance.Id_seance = poser.Id_seance WHERE seance.Code_quizz = 171023 ORDER BY correspondre.Id_question";  
 $dbhandle = mysqli_connect($hostname, $username, $password, $database)  
 or die("Unable to connect to MySQL");   
 mysqli_set_charset($dbhandle,'utf8mb4');

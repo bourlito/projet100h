@@ -25,6 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.example.oenologie.PopUpLogActivity.Code;
 import static com.example.oenologie.PopUpLogActivity.MyPREFERENCES;
 import static com.example.oenologie.PopUpLogActivity.Name;
 
@@ -42,9 +43,10 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
     private TextView tvReponse2;
     private TextView tvReponse3;
     private TextView tvReponse4;
-    private String codesession;
-    private String pseudo;
-    private String url = "https://thomas-chevalier.fr/android/quizz.php";
+    private String urlS1 = "https://thomas-chevalier.fr/android/quizzS1";
+    private String urlS2 = "https://thomas-chevalier.fr/android/quizzS2";
+    private String urlS3 = "https://thomas-chevalier.fr/android/quizzS3";
+    private RecupererJson recupererJson;
 
     SharedPreferences mySettings;
 
@@ -71,16 +73,12 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
         tvReponse3 = view.findViewById(R.id.tvReponse3);
         tvReponse4 = view.findViewById(R.id.tvReponse4);
 
-        RecupererJson recupererJson = new RecupererJson();
+        recupererJson = new RecupererJson();
         recupererJson.delegate = this;
-        recupererJson.execute(url);
 
         mySettings = this.getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         if (mySettings.getString(Name,"").equals("")){
-            tvQuestion.setVisibility(View.GONE);
-            LLV.setVisibility(View.GONE);
-
             Intent intent = new Intent(getActivity(),PopUpLogActivity.class);
             startActivityForResult(intent,1);
         }
@@ -91,18 +89,16 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==1){
             if (resultCode == Activity.RESULT_OK){
-                codesession = data.getStringExtra("codesession");
-                pseudo = data.getStringExtra("pseudo");
-                Toast.makeText(getContext(), pseudo+"\n"+codesession, Toast.LENGTH_SHORT).show();
-
-                LLV.setVisibility(View.VISIBLE);
-                tvQuestion.setVisibility(View.VISIBLE);
             }
         }
     }
 
     @Override
     public void processFinish(String output) throws JSONException{
+        tvQuestion.setVisibility(View.VISIBLE);
+        LLV.setVisibility(View.VISIBLE);
+        LL2.setVisibility(View.VISIBLE);
+
         JSONObject mainObject = new JSONObject(output);
         JSONArray mainArray = mainObject.getJSONArray("server_response");
         JSONObject object1 = mainArray.getJSONObject(0);
@@ -110,8 +106,25 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
         JSONObject rep1 = rep.getJSONObject(0);
         JSONObject rep2 = rep.getJSONObject(1);
         tvQuestion.setText(object1.getString("Libelle_question"));
-        LL4.setVisibility(View.GONE);
         tvReponse1.setText(rep1.getString("Libelle_reponse"));
         tvReponse2.setText(rep2.getString("Libelle_reponse"));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mySettings.getString(Code,null) != null){
+            switch (mySettings.getString(Code,null)){
+                case "171023":
+                    recupererJson.execute(urlS1);
+                    break;
+                case "180129":
+                    recupererJson.execute(urlS2);
+                    break;
+                case "180312":
+                    recupererJson.execute(urlS3);
+                    break;
+            }
+        }
     }
 }
