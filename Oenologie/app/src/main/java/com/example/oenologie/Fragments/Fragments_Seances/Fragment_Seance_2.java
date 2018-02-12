@@ -42,7 +42,7 @@ public class Fragment_Seance_2 extends Fragment implements AsyncResponse{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tvfrags2 = view.findViewById(R.id.tvfrags2);
-<<<<<<< HEAD
+
 
         RecupererJson recupererJson = new RecupererJson();
         recupererJson.delegate = this;
@@ -54,13 +54,13 @@ public class Fragment_Seance_2 extends Fragment implements AsyncResponse{
     @Override
     public void processFinish(String output) {
         tvfrags2.setText(output);
-=======
+
         tvfrags22 = view.findViewById(R.id.tvfrags22);
         tvfrags23 = view.findViewById(R.id.tvfrags23);
         RecupererJson recupererJson = new RecupererJson();
         recupererJson.delegate = this;
         recupererJson.execute(url);
->>>>>>> aea042677202d347bfdc318367d2668e52a9cdb6
+
     }
 
     @Override

@@ -49,20 +49,19 @@ public class Fragment_Seance_1 extends Fragment implements AsyncResponse{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-<<<<<<< HEAD
+
         tvfrags1 = view.findViewById(R.id.tvfrags1);
         RecupererJson recupererJson = new RecupererJson();
         recupererJson.delegate = this;
         recupererJson.execute("http://192.168.0.27/test/seance1.php");
 
-=======
+
         tvfrags1 = view.findViewById(R.id.tvfrags1);;
         tvfrags12 = view.findViewById(R.id.tvfrags12);
         tvfrags13 = view.findViewById(R.id.tvfrags13);
-        final RecupererJson recupererJson = new RecupererJson();
         recupererJson.delegate = this;
         recupererJson.execute(url);
->>>>>>> aea042677202d347bfdc318367d2668e52a9cdb6
+
     }
 
 

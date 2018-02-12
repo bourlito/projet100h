@@ -28,13 +28,13 @@ import java.net.URL;
 
 
 public class RecupererJson extends AsyncTask<String, Void, String> {
-<<<<<<< HEAD
+
     String JSON_URL = "http://192.168.0.27/test/seance1.php";
     String JSON_STRING;
 
-=======
+
     private String JSON_STRING;
->>>>>>> aea042677202d347bfdc318367d2668e52a9cdb6
+
     public AsyncResponse delegate = null;
 
     @Override
