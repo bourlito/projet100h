@@ -24,7 +24,7 @@ public class Fragment_Seance_2 extends Fragment implements AsyncResponse{
     private TextView tvfrags2;
     private TextView tvfrags22;
     private TextView tvfrags23;
-    private String url = "http://10.34.170.211/php/seance2";
+    private String url = "http://10.122.5.222/php/seance2";
 
     public Fragment_Seance_2() {
         // Required empty public constructor
@@ -55,6 +55,6 @@ public class Fragment_Seance_2 extends Fragment implements AsyncResponse{
         JSONArray mainArray = mainObject.getJSONArray("server_response");
         JSONObject unicObject = mainArray.getJSONObject(0);
         tvfrags2.setText(unicObject.getString("Date"));
-        tvfrags22.setText(unicObject.getString("libelle"));
-        tvfrags23.setText(unicObject.getString("Infos"));}
+        tvfrags22.setText(unicObject.getString("Libelle"));
+        tvfrags23.setText(unicObject.getString("Informations"));}
 }

@@ -10,7 +10,7 @@ or die("Unable to connect to MySQL");
 $selected = mysqli_select_db($dbhandle,$database)  
 or die("Could not select examples");  
 //query fire  
-mysqli_query($dbhandle,"SET CHARACTER SET utf8");
+mysqli_set_charset($dbhandle,'utf8mb4');
 $result = mysqli_query($dbhandle,"SELECT * FROM seance WHERE Id_seance=1");  
 $json_response = array();  
 // fetch data in array format  
