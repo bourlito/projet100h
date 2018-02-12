@@ -42,14 +42,13 @@ public class Fragment_Seance_2 extends Fragment implements AsyncResponse{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tvfrags2 = view.findViewById(R.id.tvfrags2);
-
-
+        tvfrags22 = view.findViewById(R.id.tvfrags22);
+        tvfrags23 = view.findViewById(R.id.tvfrags23);
         RecupererJson recupererJson = new RecupererJson();
         recupererJson.delegate = this;
-        recupererJson.execute("http://192.168.0.27/test/seance2.php");
+        recupererJson.execute(url);
 
     }
-    
 
     @Override
     public void processFinish(String output) throws JSONException{

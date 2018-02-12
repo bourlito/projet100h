@@ -49,7 +49,6 @@ public class Fragment_Seance_3 extends Fragment implements AsyncResponse{
         recupererJson.execute(url);
     }
 
-
     @Override
     public void processFinish(String output) throws JSONException {
         JSONObject mainObject = new JSONObject(output);
