@@ -9,12 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.oenologie.ConnexionTomcat.AsyncResponse;
+import com.example.oenologie.ConnexionTomcat.RecupererJson;
 import com.example.oenologie.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_Seance_2 extends Fragment {
+public class Fragment_Seance_2 extends Fragment implements AsyncResponse{
     private TextView tvfrags2;
 
     public Fragment_Seance_2() {
@@ -34,6 +36,15 @@ public class Fragment_Seance_2 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         tvfrags2 = view.findViewById(R.id.tvfrags2);
 
-        tvfrags2.setText("Déroulement :...\n\n\nVins à découvir :...");
+        RecupererJson recupererJson = new RecupererJson();
+        recupererJson.delegate = this;
+        recupererJson.execute("http://192.168.0.27/test/seance2.php");
+
+    }
+
+
+    @Override
+    public void processFinish(String output) {
+        tvfrags2.setText(output);
     }
 }

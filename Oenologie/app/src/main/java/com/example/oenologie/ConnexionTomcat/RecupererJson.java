@@ -25,17 +25,17 @@ import java.net.URL;
  */
 
 
-public class RecupererJson extends AsyncTask<Void, Void, String> {
-    String JSON_URL = "192.168.0.34/php/seance1";
+public class RecupererJson extends AsyncTask<String, Void, String> {
+    String JSON_URL = "http://192.168.0.27/test/seance1.php";
     String JSON_STRING;
 
     public AsyncResponse delegate = null;
 
     @Override
-    protected String doInBackground(Void... params) {
+    protected String doInBackground(String... params) {
         try {
             StringBuilder JSON_DATA = new StringBuilder();
-            URL url = new URL(JSON_URL);
+            URL url = new URL(params[0]);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             InputStream in = httpURLConnection.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
