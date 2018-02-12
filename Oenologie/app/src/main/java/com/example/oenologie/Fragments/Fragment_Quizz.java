@@ -17,10 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.oenologie.ConnexionTomcat.AsyncResponse;
+import com.example.oenologie.ConnexionTomcat.RecupererJson;
 import com.example.oenologie.PopUpLogActivity;
 import com.example.oenologie.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import static com.example.oenologie.PopUpLogActivity.MyPREFERENCES;
 import static com.example.oenologie.PopUpLogActivity.Name;
@@ -37,7 +40,8 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
     private TextView tvQuestion;
     private String codesession;
     private String pseudo;
-    private String url;
+    private String url = "https://thomas-chevalier.fr/android/quizz.php";
+    private String libelleQ;
 
     SharedPreferences mySettings;
 
@@ -59,6 +63,10 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
         LL4 = view.findViewById(R.id.LL4);
         LLV = view.findViewById(R.id.LLV);
         tvQuestion = view.findViewById(R.id.tvQuestiion);
+
+        RecupererJson recupererJson = new RecupererJson();
+        recupererJson.delegate = this;
+        recupererJson.execute(url);
 
         mySettings = this.getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
@@ -88,6 +96,11 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
 
     @Override
     public void processFinish(String output) throws JSONException{
-
+        JSONObject mainObject = new JSONObject(output);
+        JSONArray mainArray = mainObject.getJSONArray("server_response");
+        JSONObject Object1 = mainArray.getJSONObject(0);
+        JSONObject Object2 = mainArray.getJSONObject(1);
+        libelleQ = Object1.getString("Libelle");
+        tvQuestion.setText(libelleQ);
     }
 }
