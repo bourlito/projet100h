@@ -49,9 +49,7 @@ public class Fragment_Seance_2 extends Fragment implements AsyncResponse{
         recupererJson.execute("http://192.168.0.27/test/seance2.php");
 
     }
-
-
-
+    
 
     @Override
     public void processFinish(String output) throws JSONException{
