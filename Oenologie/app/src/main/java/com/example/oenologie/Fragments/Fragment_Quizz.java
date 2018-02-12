@@ -38,10 +38,13 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
     private LinearLayout LL4;
     private LinearLayout LLV;
     private TextView tvQuestion;
+    private TextView tvReponse1;
+    private TextView tvReponse2;
+    private TextView tvReponse3;
+    private TextView tvReponse4;
     private String codesession;
     private String pseudo;
     private String url = "https://thomas-chevalier.fr/android/quizz.php";
-    private String libelleQ;
 
     SharedPreferences mySettings;
 
@@ -63,6 +66,10 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
         LL4 = view.findViewById(R.id.LL4);
         LLV = view.findViewById(R.id.LLV);
         tvQuestion = view.findViewById(R.id.tvQuestiion);
+        tvReponse1 = view.findViewById(R.id.tvReponse1);
+        tvReponse2 = view.findViewById(R.id.tvReponse2);
+        tvReponse3 = view.findViewById(R.id.tvReponse3);
+        tvReponse4 = view.findViewById(R.id.tvReponse4);
 
         RecupererJson recupererJson = new RecupererJson();
         recupererJson.delegate = this;
@@ -98,9 +105,13 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
     public void processFinish(String output) throws JSONException{
         JSONObject mainObject = new JSONObject(output);
         JSONArray mainArray = mainObject.getJSONArray("server_response");
-        JSONObject Object1 = mainArray.getJSONObject(0);
-        JSONObject Object2 = mainArray.getJSONObject(1);
-        libelleQ = Object1.getString("Libelle");
-        tvQuestion.setText(libelleQ);
+        JSONObject object1 = mainArray.getJSONObject(0);
+        JSONArray rep = object1.getJSONArray("Reponses");
+        JSONObject rep1 = rep.getJSONObject(0);
+        JSONObject rep2 = rep.getJSONObject(1);
+        tvQuestion.setText(object1.getString("Libelle_question"));
+        LL4.setVisibility(View.GONE);
+        tvReponse1.setText(rep1.getString("Libelle_reponse"));
+        tvReponse2.setText(rep2.getString("Libelle_reponse"));
     }
 }
