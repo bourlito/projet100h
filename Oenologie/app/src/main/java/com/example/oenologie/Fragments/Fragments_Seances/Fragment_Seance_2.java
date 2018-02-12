@@ -51,17 +51,7 @@ public class Fragment_Seance_2 extends Fragment implements AsyncResponse{
     }
 
 
-    @Override
-    public void processFinish(String output) {
-        tvfrags2.setText(output);
 
-        tvfrags22 = view.findViewById(R.id.tvfrags22);
-        tvfrags23 = view.findViewById(R.id.tvfrags23);
-        RecupererJson recupererJson = new RecupererJson();
-        recupererJson.delegate = this;
-        recupererJson.execute(url);
-
-    }
 
     @Override
     public void processFinish(String output) throws JSONException{
