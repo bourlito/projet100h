@@ -17,10 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.oenologie.ConnexionTomcat.AsyncResponse;
+import com.example.oenologie.ConnexionTomcat.RecupererJson;
 import com.example.oenologie.PopUpLogActivity;
 import com.example.oenologie.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import static com.example.oenologie.PopUpLogActivity.MyPREFERENCES;
 import static com.example.oenologie.PopUpLogActivity.Name;
@@ -35,9 +38,13 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
     private LinearLayout LL4;
     private LinearLayout LLV;
     private TextView tvQuestion;
+    private TextView tvReponse1;
+    private TextView tvReponse2;
+    private TextView tvReponse3;
+    private TextView tvReponse4;
     private String codesession;
     private String pseudo;
-    private String url;
+    private String url = "https://thomas-chevalier.fr/android/quizz.php";
 
     SharedPreferences mySettings;
 
@@ -59,6 +66,14 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
         LL4 = view.findViewById(R.id.LL4);
         LLV = view.findViewById(R.id.LLV);
         tvQuestion = view.findViewById(R.id.tvQuestiion);
+        tvReponse1 = view.findViewById(R.id.tvReponse1);
+        tvReponse2 = view.findViewById(R.id.tvReponse2);
+        tvReponse3 = view.findViewById(R.id.tvReponse3);
+        tvReponse4 = view.findViewById(R.id.tvReponse4);
+
+        RecupererJson recupererJson = new RecupererJson();
+        recupererJson.delegate = this;
+        recupererJson.execute(url);
 
         mySettings = this.getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
@@ -88,6 +103,15 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
 
     @Override
     public void processFinish(String output) throws JSONException{
-
+        JSONObject mainObject = new JSONObject(output);
+        JSONArray mainArray = mainObject.getJSONArray("server_response");
+        JSONObject object1 = mainArray.getJSONObject(0);
+        JSONArray rep = object1.getJSONArray("Reponses");
+        JSONObject rep1 = rep.getJSONObject(0);
+        JSONObject rep2 = rep.getJSONObject(1);
+        tvQuestion.setText(object1.getString("Libelle_question"));
+        LL4.setVisibility(View.GONE);
+        tvReponse1.setText(rep1.getString("Libelle_reponse"));
+        tvReponse2.setText(rep2.getString("Libelle_reponse"));
     }
 }

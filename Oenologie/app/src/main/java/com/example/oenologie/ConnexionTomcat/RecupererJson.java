@@ -29,9 +29,7 @@ import java.text.ParseException;
 
 
 public class RecupererJson extends AsyncTask<String, Void, String> {
-
     private String JSON_STRING;
-
     public AsyncResponse delegate = null;
 
     @Override

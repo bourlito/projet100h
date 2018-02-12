@@ -53,7 +53,6 @@ public class Fragment_Seance_2 extends Fragment implements AsyncResponse{
         recupererJson.delegate = this;
         recupererJson.execute(url);
     }
-    
 
     @Override
     public void processFinish(String output) throws JSONException, ParseException {
