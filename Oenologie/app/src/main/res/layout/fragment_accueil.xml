@@ -18,7 +18,7 @@
             android:layout_margin="10dp"
             android:gravity="center"
             android:text="Chaque année, la commission oenologie d'Hei propose des dégustations, des moments de partage pour s'initier à la dégustation et la fabrication du vin, ou tout simplement pour le plaisir..."
-            android:textAlignment="textStart"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="@color/black" />
 
