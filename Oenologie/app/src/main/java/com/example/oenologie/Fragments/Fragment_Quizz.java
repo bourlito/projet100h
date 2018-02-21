@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,20 +36,31 @@ import static com.example.oenologie.PopUpLogActivity.Name;
  */
 public class Fragment_Quizz extends Fragment implements AsyncResponse{
     private int a=0;
+    private int highscore=0;
     private LinearLayout LL2;
     private LinearLayout LL4;
     private LinearLayout LLV;
+
     private TextView tvQuestion;
     private TextView tvReponse1;
     private TextView tvReponse2;
     private TextView tvReponse3;
     private TextView tvReponse4;
+    private TextView tvScore;
+
+    private CardView cvRep1;
+    private CardView cvRep2;
+
     private String urlS1 = "https://thomas-chevalier.fr/android/quizzS1";
     private String urlS2 = "https://thomas-chevalier.fr/android/quizzS2";
     private String urlS3 = "https://thomas-chevalier.fr/android/quizzS3";
+
     private RecupererJson recupererJson;
+    private JSONObject mainObject;
+    private JSONArray mainArray;
 
     SharedPreferences mySettings;
+    SharedPreferences.Editor editor;
 
     public Fragment_Quizz() {
         // Required empty public constructor
@@ -67,11 +79,16 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
         LL2 = view.findViewById(R.id.LL2);
         LL4 = view.findViewById(R.id.LL4);
         LLV = view.findViewById(R.id.LLV);
+
         tvQuestion = view.findViewById(R.id.tvQuestiion);
         tvReponse1 = view.findViewById(R.id.tvReponse1);
         tvReponse2 = view.findViewById(R.id.tvReponse2);
         tvReponse3 = view.findViewById(R.id.tvReponse3);
         tvReponse4 = view.findViewById(R.id.tvReponse4);
+        tvScore = view.findViewById(R.id.tvScore);
+
+        cvRep1 = view.findViewById(R.id.cvRep1);
+        cvRep2 = view.findViewById(R.id.cvRep2);
 
         recupererJson = new RecupererJson();
         recupererJson.delegate = this;
@@ -99,32 +116,72 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
         LLV.setVisibility(View.VISIBLE);
         LL2.setVisibility(View.VISIBLE);
 
-        JSONObject mainObject = new JSONObject(output);
-        JSONArray mainArray = mainObject.getJSONArray("server_response");
-        JSONObject object1 = mainArray.getJSONObject(0);
-        JSONArray rep = object1.getJSONArray("Reponses");
-        JSONObject rep1 = rep.getJSONObject(0);
-        JSONObject rep2 = rep.getJSONObject(1);
-        tvQuestion.setText(object1.getString("Libelle_question"));
-        tvReponse1.setText(rep1.getString("Libelle_reponse"));
-        tvReponse2.setText(rep2.getString("Libelle_reponse"));
+        mainObject = new JSONObject(output);
+        mainArray = mainObject.getJSONArray("server_response");
+        updateQuestion(a);
+
+        cvRep1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    if (mainArray.getJSONObject(a).getJSONArray("Reponses").getJSONObject(0).getString("Correct").equals("1")){
+                        highscore++;
+                        Toast.makeText(getActivity(), "Formidable !", Toast.LENGTH_SHORT).show();
+                    }else Toast.makeText(getActivity(), "Raté...", Toast.LENGTH_SHORT).show();
+                    a++;
+                    updateQuestion(a);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        cvRep2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    if (mainArray.getJSONObject(a).getJSONArray("Reponses").getJSONObject(1).getString("Correct").equals("1")){
+                        highscore++;
+                        Toast.makeText(getActivity(), "Formidable !", Toast.LENGTH_SHORT).show();
+                    }else Toast.makeText(getActivity(), "Raté...", Toast.LENGTH_SHORT).show();
+                    a++;
+                    updateQuestion(a);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void updateQuestion(int num) throws JSONException{
+        if (num<mainArray.length()){
+            tvQuestion.setText(mainArray.getJSONObject(num).getString("Libelle_question"));
+            tvReponse1.setText(mainArray.getJSONObject(num).getJSONArray("Reponses").getJSONObject(0).getString("Libelle_reponse"));
+            tvReponse2.setText(mainArray.getJSONObject(num).getJSONArray("Reponses").getJSONObject(1).getString("Libelle_reponse"));
+        }else{
+            LL2.setVisibility(View.GONE);
+            tvQuestion.setText("Quizz terminé\nScore : "+highscore);
+        }
+        tvScore.setText("Score : "+highscore);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (mySettings.getString(Code,null) != null){
-            switch (mySettings.getString(Code,null)){
-                case "171023":
-                    recupererJson.execute(urlS1);
-                    break;
-                case "180129":
-                    recupererJson.execute(urlS2);
-                    break;
-                case "180312":
-                    recupererJson.execute(urlS3);
-                    break;
+        try {
+            if (mySettings.getString(Code,null) != null){
+                switch (mySettings.getString(Code,null)){
+                    case "171023":
+                        recupererJson.execute(urlS1);
+                        break;
+                    case "180129":
+                        recupererJson.execute(urlS2);
+                        break;
+                    case "180312":
+                        recupererJson.execute(urlS3);
+                        break;
+                }
             }
-        }
+        }catch (Exception e){e.printStackTrace();}
     }
 }

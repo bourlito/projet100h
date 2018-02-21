@@ -31,6 +31,15 @@ public class Fragment_Seance_3 extends Fragment implements AsyncResponse{
     private TextView tvfrags33;
     private String url = "https://thomas-chevalier.fr/android/seance3.php";
 
+    private int a=0;
+    private String dateparse;
+    private JSONObject mainObject;
+    private JSONArray mainArray;
+    private JSONObject unicObject;
+
+    private DateFormat inputformat;
+    private DateFormat outputformat;
+
     public Fragment_Seance_3() {
         // Required empty public constructor
     }
@@ -50,22 +59,33 @@ public class Fragment_Seance_3 extends Fragment implements AsyncResponse{
         tvfrags32 = view.findViewById(R.id.tvfrags32);
         tvfrags33 = view.findViewById(R.id.tvfrags33);
         RecupererJson recupererJson = new RecupererJson();
-        recupererJson.delegate = this;
-        recupererJson.execute(url);
+        if (a==0){
+            recupererJson.delegate = this;
+            recupererJson.execute(url);
+            a++;
+        }else{
+            tvfrags3.setText(dateparse);
+            try {
+                tvfrags32.setText(unicObject.getString("Libelle"));
+                tvfrags33.setText(unicObject.getString("Informations"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
     public void processFinish(String output) throws JSONException, ParseException {
-        JSONObject mainObject = new JSONObject(output);
-        JSONArray mainArray = mainObject.getJSONArray("server_response");
-        JSONObject unicObject = mainArray.getJSONObject(0);
+        mainObject = new JSONObject(output);
+        mainArray = mainObject.getJSONArray("server_response");
+        unicObject = mainArray.getJSONObject(0);
 
-        DateFormat inputformat = new SimpleDateFormat("yyyy-MM-dd");
-        DateFormat outputformat = new SimpleDateFormat("dd-MM-yyyy");
+        inputformat = new SimpleDateFormat("yyyy-MM-dd");
+        outputformat = new SimpleDateFormat("dd-MM-yyyy");
 
         String date = unicObject.getString("Date");
         Date date1 = inputformat.parse(date);
-        String dateparse = outputformat.format(date1);
+        dateparse = outputformat.format(date1);
 
         tvfrags3.setText(dateparse);
         tvfrags32.setText(unicObject.getString("Libelle"));

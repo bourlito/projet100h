@@ -176,6 +176,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        nav_user.setText("".equals(mySettings.getString(Name,"")) || mySettings.getString(Name,null).equals(null) ? "Non connecté" : String.format("%s", mySettings.getString(Name,"")));
+        nav_user.setText("".equals(mySettings.getString(Name,"")) || mySettings.getString(Name,null).equals(null) ? "" : String.format("%s", mySettings.getString(Name,"")));
     }
 }
