@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Created by etienne on 23/01/2018.
+ * gestion des seances du fragment seance
  */
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {

@@ -58,7 +58,9 @@ public class Fragment_Seance_1 extends Fragment implements AsyncResponse{
         tvfrags12 = view.findViewById(R.id.tvfrags12);
         tvfrags13 = view.findViewById(R.id.tvfrags13);
 
+        //recuperation du json
         RecupererJson recupererJson = new RecupererJson();
+        //buffer pour ne pas recharger le json a chaque retour sur l'activite
         if (a==0){
             recupererJson.delegate = this;
             recupererJson.execute(url);

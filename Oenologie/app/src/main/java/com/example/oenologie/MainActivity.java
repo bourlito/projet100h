@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         hView = navigationView.getHeaderView(0);
         nav_user = hView.findViewById(R.id.testPseudoNav);
 
+        //implementation du menu
         myDrawer.addDrawerListener(myToggle);
         myToggle = new ActionBarDrawerToggle(this,myDrawer,R.string.open,R.string.close);
         myToggle.syncState();
@@ -77,21 +78,22 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupDrawerContent(navigationView);
 
+        //animation du titre
         Animation myanim = AnimationUtils.loadAnimation(this, R.anim.my_transition);
         tvIntro.startAnimation(myanim);
 
+        //recuperation des SharedPref
         mySettings = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         editor = mySettings.edit();
         editor.clear();
         editor.apply();
-        
-        nav_user.setText("".equals(mySettings.getString(Name,"")) || mySettings.getString(Name,null).equals(null) ? "Non connecté" : String.format("%s", mySettings.getString(Name,"")));
 
+        //gestion des onglets du menu
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.accueil:
+                    case R.id.accueil: //page d'accueil
                         tvIntro.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Accueil());
@@ -101,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                         myDrawer.closeDrawers();
                         break;
 
-                    case R.id.seance:
+                    case R.id.seance: //page des seances
                         tvIntro.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Seance());
@@ -111,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                         myDrawer.closeDrawers();
                         break;
 
-                    case R.id.carte:
+                    case R.id.carte: //page de la carte interactive
                         tvIntro.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Carte());
@@ -121,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                         myDrawer.closeDrawers();
                         break;
 
-                    case R.id.quizz:
+                    case R.id.quizz: //page du quizz
                         tvIntro.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Quizz());
@@ -131,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                         myDrawer.closeDrawers();
                         break;
 
-                    case R.id.contact:
+                    case R.id.contact: //page des contacts
                         tvIntro.setVisibility(View.GONE);
                         fragmentTransaction = getSupportFragmentManager().beginTransaction();
                         fragmentTransaction.replace(R.id.flcontent,new Fragment_Contact());
@@ -145,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //lien vers l'evenement Facebook
         btnFb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -163,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //bouton menu
     private void setupDrawerContent(NavigationView navigationView){
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -172,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
+    //affichage du nom de l'utisateur dans le menu
     @Override
     protected void onResume() {
         super.onResume();

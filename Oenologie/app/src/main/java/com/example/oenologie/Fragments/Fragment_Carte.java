@@ -64,6 +64,7 @@ public class Fragment_Carte extends Fragment {
         ivSudOuest = view.findViewById(R.id.iv_sudouest);
         ivSudOuest2 = view.findViewById(R.id.iv_sudouest2);
 
+        //gestion des clics sur la carte
         ivLoire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

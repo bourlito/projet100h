@@ -11,6 +11,7 @@ import com.example.oenologie.R;
 
 /**
  * A simple {@link Fragment} subclass.
+ * pas encore fait
  */
 public class Fragment_Contact extends Fragment {
 

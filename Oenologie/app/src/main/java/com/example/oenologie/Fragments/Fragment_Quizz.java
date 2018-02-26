@@ -35,8 +35,8 @@ import static com.example.oenologie.PopUpLogActivity.Name;
  *
  */
 public class Fragment_Quizz extends Fragment implements AsyncResponse{
-    private int a=0;
-    private int highscore=0;
+    private static int a = 0;
+    private static int highscore = 0;
     private LinearLayout LL2;
     private LinearLayout LL4;
     private LinearLayout LLV;
@@ -95,18 +95,10 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
 
         mySettings = this.getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
+        //display de la page de connection
         if (mySettings.getString(Name,"").equals("")){
             Intent intent = new Intent(getActivity(),PopUpLogActivity.class);
-            startActivityForResult(intent,1);
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==1){
-            if (resultCode == Activity.RESULT_OK){
-            }
+            startActivity(intent);
         }
     }
 
@@ -118,8 +110,11 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
 
         mainObject = new JSONObject(output);
         mainArray = mainObject.getJSONArray("server_response");
+
+        //afichage des questions
         updateQuestion(a);
 
+        //gestion du clic sur la reponse
         cvRep1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

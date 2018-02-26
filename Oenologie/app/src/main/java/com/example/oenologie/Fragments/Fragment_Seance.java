@@ -45,10 +45,12 @@ public class Fragment_Seance extends Fragment {
         viewPager = view.findViewById(R.id.viewpager);
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
 
+        //creation des seances
         viewPagerAdapter.addFragment(new Fragment_Seance_1(), "Seance 1");
         viewPagerAdapter.addFragment(new Fragment_Seance_2(), "Seance 2");
         viewPagerAdapter.addFragment(new Fragment_Seance_3(), "Seance 3");
 
+        //affichage du menu des seances
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 

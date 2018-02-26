@@ -31,9 +31,11 @@ public class InfosCepageActivity extends AppCompatActivity {
         tvTContenu5 = findViewById(R.id.textTcontenu5);
         tvContenu5 = findViewById(R.id.textcontenu5);
 
+        //recuperation des infos passees dans le bundle de l'activite precedente
         Bundle bundle = getIntent().getExtras();
         tvIntro.setText(bundle.getString("zone"));
 
+        //retour vers la carte
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,6 +43,7 @@ public class InfosCepageActivity extends AppCompatActivity {
             }
         });
 
+        //affichage des infos du cepage en fonction de la zone du cepage
         switch (bundle.getString("zone")){
             case "Loire":
                 tvContenu.setText("70 000 hectares dont 52 000 classés en AOC-AOP."
