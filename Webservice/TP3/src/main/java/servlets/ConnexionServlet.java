@@ -32,10 +32,9 @@ public class ConnexionServlet extends GenericServlet{
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         if (request.getSession().getAttribute("username")!=null){
-            response.sendRedirect("/");
+            response.sendRedirect("/login");
         } else {
             WebContext context = new WebContext(request, response, request.getServletContext());
-
             TemplateEngine templateEngine = createTemplateEngine(request.getServletContext());
             templateEngine.process("login", context, response.getWriter());
         }
