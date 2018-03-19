@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.tapadoo.alerter.Alerter;
+
 public class PopUpLogActivity extends AppCompatActivity {
     private EditText etcodesession;
     private EditText etpseudo;
@@ -26,6 +28,7 @@ public class PopUpLogActivity extends AppCompatActivity {
     public static final String Code = "codeKey";
     SharedPreferences mySettings;
     SharedPreferences.Editor editor;
+    Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
