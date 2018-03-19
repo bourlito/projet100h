@@ -14,14 +14,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:layout_marginTop="20dp"/>
 
-    <ImageView
-        android:id="@+id/iv_carte"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:contentDescription="@string/carte_interactive_des_vignobles_de_france"
-        android:src="@drawable/france_vignobles" />
-
     <RelativeLayout
         android:id="@+id/relativeLayoutCarte"
         android:layout_width="match_parent"
@@ -218,5 +210,13 @@
             android:minWidth="20dp"
             android:src="@android:color/transparent" />
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_carte"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:contentDescription="@string/carte_interactive_des_vignobles_de_france"
+        android:src="@drawable/france_vignobles" />
 
 </FrameLayout>
