@@ -10,7 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.devs.vectorchildfinder.VectorChildFinder;
+import com.devs.vectorchildfinder.VectorDrawableCompat;
 import com.example.oenologie.InfosCepageActivity;
 import com.example.oenologie.R;
 
@@ -34,6 +37,7 @@ public class Fragment_Carte extends Fragment {
     private ImageView ivChampagne;
     private ImageView ivAlsace;
     private ImageView ivLorraine;
+    private ImageView ivCarte;
 
     public Fragment_Carte() {
         // Required empty public constructor
@@ -63,6 +67,11 @@ public class Fragment_Carte extends Fragment {
         ivSavoie = view.findViewById(R.id.iv_savoie);
         ivSudOuest = view.findViewById(R.id.iv_sudouest);
         ivSudOuest2 = view.findViewById(R.id.iv_sudouest2);
+        ivCarte = view.findViewById(R.id.iv_carte);
+
+        //test svg
+        VectorChildFinder vector = new VectorChildFinder(view.getContext(),R.drawable.france_vignobles,ivCarte);
+        VectorDrawableCompat.VGroup groupSavoie = vector.findGroupByName("savoie");
 
         //gestion des clics sur la carte
         ivLoire.setOnClickListener(new View.OnClickListener() {

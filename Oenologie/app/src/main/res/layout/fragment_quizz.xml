@@ -19,7 +19,8 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/tvQuestiion"
