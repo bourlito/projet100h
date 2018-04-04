@@ -8,13 +8,22 @@ import java.sql.*;
 public class SeanceDaoImpl implements SeanceDao {
 
     @Override
+<<<<<<< HEAD
     public Seance getSeance1 (Integer Id) {
         String query = "SELECT * FROM `seance` WHERE Id_seance=1";
         try(
+=======
+    public Seance getSeance(Integer numSeance) {
+        try{
+>>>>>>> etienne
                 Connection connection = DatasourceProvider.getDaraSource().getConnection();
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery(query)
-        ) {
+                PreparedStatement statement = connection.prepareStatement("SELECT * FROM `seance` WHERE Id_seance=?");
+                statement.setInt(1, numSeance);
+
+                ResultSet rs = statement.executeQuery();
+                if (rs.next()) {
+                    return new Seance(rs.getInt("Id_Seance"), rs.getString("Libelle"), rs.getDate("Date"), rs.getString("Informations"));
+                }
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
