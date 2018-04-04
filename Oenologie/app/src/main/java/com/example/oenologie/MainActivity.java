@@ -4,8 +4,6 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -17,23 +15,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.oenologie.Classes.Utilisateur;
 import com.example.oenologie.Fragments.Fragment_Accueil;
 import com.example.oenologie.Fragments.Fragment_Carte;
 import com.example.oenologie.Fragments.Fragment_Contact;
 import com.example.oenologie.Fragments.Fragment_Quizz;
 import com.example.oenologie.Fragments.Fragment_Seance;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.jar.Attributes;
 
 import static com.example.oenologie.PopUpLogActivity.MyPREFERENCES;
 import static com.example.oenologie.PopUpLogActivity.Name;

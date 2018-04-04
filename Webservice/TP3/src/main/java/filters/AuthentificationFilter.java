@@ -18,9 +18,9 @@ public class AuthentificationFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) req;
 
-        if (httpRequest.getSession().getAttribute("username")==null){
+        if (httpRequest.getSession().getAttribute("username")==null || "".equals(httpRequest.getSession().getAttribute("username"))){
             HttpServletResponse httpResponse = (HttpServletResponse) resp;
-            httpResponse.sendRedirect("login");
+            httpResponse.sendRedirect("../login");
         }
         chain.doFilter(req, resp);
     }

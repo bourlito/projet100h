@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.oenologie.ConnexionTomcat.AsyncResponse;
+import com.example.oenologie.ConnexionTomcat.Parsing;
 import com.example.oenologie.ConnexionTomcat.RecupererJson;
 import com.example.oenologie.R;
 
@@ -20,6 +21,7 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -61,37 +63,17 @@ public class Fragment_Seance_3 extends Fragment implements AsyncResponse{
 
         //recuperation du json
         RecupererJson recupererJson = new RecupererJson();
-        //buffer
-        if (a==0){
-            recupererJson.delegate = this;
-            recupererJson.execute(url);
-            a++;
-        }else{
-            tvfrags3.setText(dateparse);
-            try {
-                tvfrags32.setText(unicObject.getString("Libelle"));
-                tvfrags33.setText(unicObject.getString("Informations"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
+        recupererJson.delegate = this;
+        recupererJson.execute(url);
     }
 
     @Override
     public void processFinish(String output) throws JSONException, ParseException {
-        mainObject = new JSONObject(output);
-        mainArray = mainObject.getJSONArray("server_response");
-        unicObject = mainArray.getJSONObject(0);
+        Parsing parsing = new Parsing();
+        ArrayList<String> elements = parsing.parseSeance(output);
 
-        inputformat = new SimpleDateFormat("yyyy-MM-dd");
-        outputformat = new SimpleDateFormat("dd-MM-yyyy");
-
-        String date = unicObject.getString("Date");
-        Date date1 = inputformat.parse(date);
-        dateparse = outputformat.format(date1);
-
-        tvfrags3.setText(dateparse);
-        tvfrags32.setText(unicObject.getString("Libelle"));
-        tvfrags33.setText(unicObject.getString("Informations"));
+        tvfrags3.setText(elements.get(0));
+        tvfrags32.setText(elements.get(1));
+        tvfrags33.setText(elements.get(2));
     }
 }
