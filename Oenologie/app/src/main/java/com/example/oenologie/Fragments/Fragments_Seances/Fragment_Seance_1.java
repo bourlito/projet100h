@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.oenologie.ConnexionTomcat.AsyncResponse;
+import com.example.oenologie.ConnexionTomcat.Parsing;
 import com.example.oenologie.ConnexionTomcat.RecupererJson;
 import com.example.oenologie.R;
 
@@ -21,6 +22,7 @@ import org.w3c.dom.Text;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -61,35 +63,17 @@ public class Fragment_Seance_1 extends Fragment implements AsyncResponse{
         //recuperation du json
         RecupererJson recupererJson = new RecupererJson();
         //buffer pour ne pas recharger le json a chaque retour sur l'activite
-        if (a==0){
-            recupererJson.delegate = this;
-            recupererJson.execute(url);
-            a++;
-        }else{
-            tvfrags1.setText(dateparse);
-            try {
-                tvfrags12.setText(unicObject.getString("Libelle"));
-                tvfrags13.setText(unicObject.getString("Informations"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
+        recupererJson.delegate = this;
+        recupererJson.execute(url);
     }
 
     @Override
     public void processFinish(String output) throws JSONException, ParseException {
-        mainObject = new JSONObject(output);
-        mainArray = mainObject.getJSONArray("server_response");
-        unicObject = mainArray.getJSONObject(0);
-        inputformat = new SimpleDateFormat("yyyy-MM-dd");
-        outputformat = new SimpleDateFormat("dd-MM-yyyy");
+        Parsing parsing = new Parsing();
+        ArrayList<String> elements = parsing.parseSeance(output);
 
-        String date = unicObject.getString("Date");
-        Date date1 = inputformat.parse(date);
-        dateparse = outputformat.format(date1);
-
-        tvfrags1.setText(dateparse);
-        tvfrags12.setText(unicObject.getString("Libelle"));
-        tvfrags13.setText(unicObject.getString("Informations"));
+        tvfrags1.setText(elements.get(0));
+        tvfrags12.setText(elements.get(1));
+        tvfrags13.setText(elements.get(2));
     }
 }

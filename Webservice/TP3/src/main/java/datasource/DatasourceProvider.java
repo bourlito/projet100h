@@ -12,7 +12,7 @@ public class DatasourceProvider {
             dataSource.setPort(3306);
             dataSource.setDatabaseName("oenologie");
             dataSource.setUser("root");
-            dataSource.setPassword("root");
+            dataSource.setPassword("Etl326875");
         }
         return dataSource;
     }

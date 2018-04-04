@@ -158,6 +158,7 @@ public class Fragment_Quizz extends Fragment implements AsyncResponse{
             tvQuestion.setText("Quizz terminé\nScore : "+highscore);
         }
         tvScore.setText("Score : "+highscore);
+
     }
 
     @Override
