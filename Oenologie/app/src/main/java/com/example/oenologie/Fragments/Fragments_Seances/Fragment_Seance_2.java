@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.oenologie.ConnexionTomcat.AsyncResponse;
+import com.example.oenologie.ConnexionTomcat.Parsing;
 import com.example.oenologie.ConnexionTomcat.RecupererJson;
 import com.example.oenologie.R;
 
@@ -20,6 +21,7 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -60,35 +62,17 @@ public class Fragment_Seance_2 extends Fragment implements AsyncResponse{
         tvfrags23 = view.findViewById(R.id.tvfrags23);
 
         RecupererJson recupererJson = new RecupererJson();
-        if (a==0){
-            recupererJson.delegate = this;
-            recupererJson.execute(url);
-            a++;
-        }else{
-            tvfrags2.setText(dateparse);
-            try {
-                tvfrags22.setText(unicObject.getString("Libelle"));
-                tvfrags23.setText(unicObject.getString("Informations"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
+        recupererJson.delegate = this;
+        recupererJson.execute(url);
     }
 
     @Override
     public void processFinish(String output) throws JSONException, ParseException {
-        mainObject = new JSONObject(output);
-        mainArray = mainObject.getJSONArray("server_response");
-        unicObject = mainArray.getJSONObject(0);
+        Parsing parsing = new Parsing();
+        ArrayList<String> elements = parsing.parseSeance(output);
 
-        inputformat = new SimpleDateFormat("yyyy-MM-dd");
-        outputformat = new SimpleDateFormat("dd-MM-yyyy");
-
-        String date = unicObject.getString("Date");
-        Date date1 = inputformat.parse(date);
-        dateparse = outputformat.format(date1);
-
-        tvfrags2.setText(dateparse);
-        tvfrags22.setText(unicObject.getString("Libelle"));
-        tvfrags23.setText(unicObject.getString("Informations"));}
+        tvfrags2.setText(elements.get(0));
+        tvfrags22.setText(elements.get(1));
+        tvfrags23.setText(elements.get(2));
+    }
 }
