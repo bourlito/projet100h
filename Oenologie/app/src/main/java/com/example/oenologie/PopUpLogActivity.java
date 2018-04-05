@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.tapadoo.alerter.Alerter;
 
 public class PopUpLogActivity extends AppCompatActivity {
     private EditText etcodesession;
