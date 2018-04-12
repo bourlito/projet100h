@@ -15,7 +15,7 @@ import com.Oenologie.oenologie.Fragments.Fragments_Seances.Fragment_Seance_1;
 import com.Oenologie.oenologie.Fragments.Fragments_Seances.Fragment_Seance_2;
 import com.Oenologie.oenologie.Fragments.Fragments_Seances.Fragment_Seance_3;
 import com.Oenologie.oenologie.Fragments.Fragments_Seances.ViewPagerAdapter;
-import com.example.oenologie.R;
+import com.Oenologie.oenologie.R;
 
 /**
  * A simple {@link Fragment} subclass.

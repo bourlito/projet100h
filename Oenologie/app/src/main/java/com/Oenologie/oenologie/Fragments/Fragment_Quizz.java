@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.Oenologie.oenologie.ConnexionTomcat.AsyncResponse;
 import com.Oenologie.oenologie.ConnexionTomcat.RecupererJson;
 import com.Oenologie.oenologie.PopUpLogActivity;
-import com.example.oenologie.R;
+import com.Oenologie.oenologie.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

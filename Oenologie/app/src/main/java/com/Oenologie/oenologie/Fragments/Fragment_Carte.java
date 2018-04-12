@@ -10,12 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.devs.vectorchildfinder.VectorChildFinder;
 import com.devs.vectorchildfinder.VectorDrawableCompat;
-import com.example.oenologie.InfosCepageActivity;
-import com.example.oenologie.R;
+import com.Oenologie.oenologie.InfosCepageActivity;
+import com.Oenologie.oenologie.R;
 
 /**
  * A simple {@link Fragment} subclass.

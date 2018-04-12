@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.oenologie.R;
-
 public class InfosCepageActivity extends AppCompatActivity {
     private TextView tvIntro;
     private TextView tvContenu;

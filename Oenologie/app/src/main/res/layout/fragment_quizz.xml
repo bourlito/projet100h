@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.oenologie.Fragments.Fragment_Quizz">
+    tools:context="com.Oenologie.oenologie.Fragments.Fragment_Quizz">
 
     <LinearLayout
         android:id="@+id/LLV"

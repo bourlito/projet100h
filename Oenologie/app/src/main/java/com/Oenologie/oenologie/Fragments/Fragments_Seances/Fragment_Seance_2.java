@@ -12,13 +12,10 @@ import android.widget.TextView;
 import com.Oenologie.oenologie.ConnexionTomcat.AsyncResponse;
 import com.Oenologie.oenologie.ConnexionTomcat.Parsing;
 import com.Oenologie.oenologie.ConnexionTomcat.RecupererJson;
-import com.example.oenologie.R;
+import com.Oenologie.oenologie.R;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -30,15 +27,6 @@ public class Fragment_Seance_2 extends Fragment implements AsyncResponse{
     private TextView tvfrags22;
     private TextView tvfrags23;
     private String url = "https://thomas-chevalier.fr/android/seance2.php";
-
-    private int a=0;
-    private String dateparse;
-    private JSONObject mainObject;
-    private JSONArray mainArray;
-    private JSONObject unicObject;
-
-    private DateFormat inputformat;
-    private DateFormat outputformat;
 
     public Fragment_Seance_2() {
         // Required empty public constructor

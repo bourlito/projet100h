@@ -23,7 +23,6 @@ import com.Oenologie.oenologie.Fragments.Fragment_Carte;
 import com.Oenologie.oenologie.Fragments.Fragment_Contact;
 import com.Oenologie.oenologie.Fragments.Fragment_Quizz;
 import com.Oenologie.oenologie.Fragments.Fragment_Seance;
-import com.example.oenologie.R;
 
 import static com.Oenologie.oenologie.PopUpLogActivity.MyPREFERENCES;
 import static com.Oenologie.oenologie.PopUpLogActivity.Name;
@@ -32,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout myDrawer;
     private ActionBarDrawerToggle myToggle;
-    private DatabaseHelper dbHelper = new DatabaseHelper(this);
     private FragmentTransaction fragmentTransaction;
 
     private NavigationView navigationView;

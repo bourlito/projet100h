@@ -9,15 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-<<<<<<< HEAD:Oenologie/app/src/main/java/com/example/oenologie/PopUpLogActivity.java
-<<<<<<< HEAD
-
-=======
->>>>>>> 2706436e3f19bc2e94ace927a2d01259210b6a9f
-=======
-import com.example.oenologie.R;
-
->>>>>>> master:Oenologie/app/src/main/java/com/Oenologie/oenologie/PopUpLogActivity.java
 public class PopUpLogActivity extends AppCompatActivity {
     private EditText etcodesession;
     private EditText etpseudo;
