@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/myDrawer"
-    tools:context="com.example.oenologie.MainActivity"
+    tools:context="com.Oenologie.oenologie.MainActivity"
     android:background="@drawable/background"
     android:orientation="vertical">
 

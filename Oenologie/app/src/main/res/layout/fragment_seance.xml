@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.oenologie.Fragments.Fragment_Seance"
+    tools:context="com.Oenologie.oenologie.Fragments.Fragment_Seance"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/black"
             app:tabMode="fixed"
-            app:tabTextColor="@color/grey"></android.support.design.widget.TabLayout>
+            app:tabTextColor="@color/grey" />
 
         <android.support.v4.view.ViewPager
             android:layout_width="match_parent"
