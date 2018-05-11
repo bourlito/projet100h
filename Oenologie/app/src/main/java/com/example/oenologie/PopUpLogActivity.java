@@ -10,10 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 2706436e3f19bc2e94ace927a2d01259210b6a9f
 public class PopUpLogActivity extends AppCompatActivity {
     private EditText etcodesession;
     private EditText etpseudo;
